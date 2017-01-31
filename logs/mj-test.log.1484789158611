@@ -1,0 +1,8 @@
+INFO  02:21:27,873 - Compiling source file: /home/petart/workspace/MJCompiler/test/program.mj
+INFO  02:21:27,908 - #2 program
+INFO  02:21:27,908 - #47 MJProgram
+ERROR 02:21:27,908 - 
+Sintaksna greska na liniji 1
+ERROR 02:21:27,909 - Fatalna greska, parsiranje se ne moze nastaviti na liniji 1
+INFO  02:21:27,918 - Print calls = 0
+ERROR 02:21:27,921 - Parsiranje NIJE uspesno zavrseno!

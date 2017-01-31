@@ -1,0 +1,28 @@
+INFO  08:16:31,475 - Compiling source file: /home/petart/workspace/MJCompiler/test/program.mj
+INFO  08:16:31,523 - #2 program
+INFO  08:16:31,524 - #47 P
+INFO  08:16:31,524 - #4 class
+INFO  08:16:31,524 - Pocetak programa P na liniji 1
+INFO  08:16:31,525 - #47 A
+INFO  08:16:31,525 - #38 {
+INFO  08:16:31,525 - Deklarisana klasa A na liniji 3
+INFO  08:16:31,526 - #38 {
+INFO  08:16:31,526 - #47 char
+INFO  08:16:31,526 - #47 slovov
+INFO  08:16:31,526 - #42 (
+INFO  08:16:31,530 - #43 )
+INFO  08:16:31,530 - #38 {
+INFO  08:16:31,531 - #6 return
+INFO  08:16:31,532 - #49 o
+INFO  08:16:31,532 - #44 ;
+INFO  08:16:31,532 - #39 }
+INFO  08:16:31,533 - #39 }
+INFO  08:16:31,533 - #39 }
+INFO  08:16:31,533 - #4 class
+INFO  08:16:31,534 - #47 B
+INFO  08:16:31,535 - #47 extands
+ERROR 08:16:31,535 - 
+Sintaksna greska na liniji 12
+ERROR 08:16:31,535 - Fatalna greska, parsiranje se ne moze nastaviti na liniji 12
+INFO  08:16:31,535 - Print calls = 0
+ERROR 08:16:31,537 - Parsiranje NIJE uspesno zavrseno!

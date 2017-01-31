@@ -1,0 +1,47 @@
+INFO  05:47:12,346 - Compiling source file: /home/petart/workspace/MJCompiler/test/program.mj
+INFO  05:47:12,400 - #2 program
+INFO  05:47:12,400 - #47 Test4
+INFO  05:47:12,401 - #38 {
+INFO  05:47:12,401 - Pocetak programa Test4 na liniji 1
+INFO  05:47:12,401 - #7 void
+INFO  05:47:12,401 - #47 test
+INFO  05:47:12,402 - #42 (
+INFO  05:47:12,405 - #47 int
+INFO  05:47:12,405 - #47 a
+INFO  05:47:12,406 - #45 ,
+INFO  05:47:12,406 - #47 int
+INFO  05:47:12,406 - #47 b
+INFO  05:47:12,407 - #43 )
+INFO  05:47:12,407 - #38 {
+INFO  05:47:12,407 - #39 }
+INFO  05:47:12,407 - #7 void
+INFO  05:47:12,408 - #47 main
+INFO  05:47:12,408 - #42 (
+INFO  05:47:12,408 - #43 )
+INFO  05:47:12,408 - #38 {
+INFO  05:47:12,409 - #47 Test
+INFO  05:47:12,409 - #42 (
+INFO  05:47:12,409 - Koriscenje identifikatora Test na liniji 11
+ERROR 05:47:12,409 - Greska na liniji 11:promenjiva Test ne postoji
+INFO  05:47:12,410 - #48 3
+INFO  05:47:12,410 - #48 3
+ERROR 05:47:12,410 - 
+Sintaksna greska na liniji 11
+INFO  05:47:12,410 - #43 )
+INFO  05:47:12,411 - #44 ;
+INFO  05:47:12,411 - #39 }
+INFO  05:47:12,413 - #39 }
+DEBUG 05:47:12,414 - Uspesan oporavak od greske na liniji 11
+INFO  05:47:12,415 - Broj globalnih prostih promenjivih:0
+INFO  05:47:12,416 - Broj globalnih nizova:0
+INFO  05:47:12,416 - Broj globalnih konstanti:0
+INFO  05:47:12,416 - Broj unutrasnjih klasa:0
+INFO  05:47:12,416 - Broj iskaza u main-u:1
+INFO  05:47:12,416 - Broj poziva metoda u main-u:0
+INFO  05:47:12,416 - Broj blokova naredbi:0
+INFO  05:47:12,417 - Broj funkcija glavnog programa:2
+INFO  05:47:12,417 - Broj funkcija unutrasnjih klasa:0
+INFO  05:47:12,417 - Broj naredbi kreiranja instanci unutrasnjih klasa:0
+INFO  05:47:12,417 - Broj pristupa clanovima natklase preko kljucne reci super:0
+INFO  05:47:12,417 - Print calls = 0
+ERROR 05:47:12,419 - Parsiranje NIJE uspesno zavrseno!

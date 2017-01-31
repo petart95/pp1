@@ -1,0 +1,78 @@
+INFO  08:14:50,330 - Compiling source file: /home/petart/workspace/MJCompiler/test/program.mj
+INFO  08:14:50,380 - #2 program
+INFO  08:14:50,381 - #47 P
+INFO  08:14:50,381 - #47 Class
+INFO  08:14:50,381 - Pocetak programa P na liniji 1
+INFO  08:14:50,382 - #47 A
+INFO  08:14:50,382 - Nije pronadjen tip Class u tabeli simbola
+INFO  08:14:50,382 - #38 {
+ERROR 08:14:50,382 - 
+Sintaksna greska na liniji 4
+INFO  08:14:50,383 - #38 {
+INFO  08:14:50,383 - #47 char
+INFO  08:14:50,383 - #47 slovov
+INFO  08:14:50,385 - #42 (
+INFO  08:14:50,385 - #43 )
+INFO  08:14:50,385 - #38 {
+INFO  08:14:50,386 - #6 return
+INFO  08:14:50,386 - #49 o
+INFO  08:14:50,386 - #44 ;
+INFO  08:14:50,386 - #39 }
+INFO  08:14:50,387 - #39 }
+INFO  08:14:50,387 - #39 }
+INFO  08:14:50,387 - #47 Class
+INFO  08:14:50,387 - #47 B
+INFO  08:14:50,387 - #47 extands
+INFO  08:14:50,387 - #47 A
+INFO  08:14:50,388 - #38 {
+INFO  08:14:50,388 - #38 {
+INFO  08:14:50,388 - #47 char
+INFO  08:14:50,388 - #47 slovov
+INFO  08:14:50,388 - #42 (
+INFO  08:14:50,388 - #43 )
+INFO  08:14:50,389 - #38 {
+INFO  08:14:50,389 - #6 return
+INFO  08:14:50,389 - #49 k
+INFO  08:14:50,389 - #44 ;
+INFO  08:14:50,389 - #39 }
+INFO  08:14:50,389 - #39 }
+INFO  08:14:50,390 - #39 }
+INFO  08:14:50,390 - #47 Table
+INFO  08:14:50,390 - #47 val
+INFO  08:14:50,390 - #44 ;
+INFO  08:14:50,390 - #38 {
+INFO  08:14:50,391 - #7 void
+INFO  08:14:50,391 - #47 main
+DEBUG 08:14:50,391 - Uspesan oporavak od greske na liniji 21 pri definisanju promenjive
+INFO  08:14:50,391 - #42 (
+INFO  08:14:50,395 - #43 )
+INFO  08:14:50,395 - #47 int
+INFO  08:14:50,395 - #47 x
+INFO  08:14:50,396 - #45 ,
+INFO  08:14:50,396 - #47 i
+INFO  08:14:50,396 - #44 ;
+INFO  08:14:50,396 - #38 {
+INFO  08:14:50,396 - #47 A
+INFO  08:14:50,397 - #47 x
+ERROR 08:14:50,397 - 
+Sintaksna greska na liniji 27
+INFO  08:14:50,397 - #44 ;
+INFO  08:14:50,397 - #47 B
+INFO  08:14:50,397 - #47 y
+INFO  08:14:50,397 - #44 ;
+INFO  08:14:50,398 - #47 A
+INFO  08:14:50,398 - #47 z
+INFO  08:14:50,398 - #17 =
+INFO  08:14:50,398 - #8 new
+INFO  08:14:50,399 - #47 B
+INFO  08:14:50,399 - #44 ;
+INFO  08:14:50,399 - #15 print
+INFO  08:14:50,399 - #42 (
+INFO  08:14:50,399 - #47 x
+DEBUG 08:14:50,400 - Uspesan oporavak od greske na liniji 27
+INFO  08:14:50,400 - #46 .
+INFO  08:14:50,400 - Koriscenje identifikatora x na liniji 31
+INFO  08:14:50,400 - #47 slovo
+INFO  08:14:50,401 - #42 (
+INFO  08:14:50,402 - #43 )
+INFO  08:14:50,402 - #43 )

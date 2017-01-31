@@ -1,0 +1,300 @@
+INFO  06:18:18,173 - Compiling source file: /home/petart/workspace/MJCompiler/test/program.mj
+INFO  06:18:18,223 - #2 program
+INFO  06:18:18,224 - #47 P
+INFO  06:18:18,224 - #3 const
+INFO  06:18:18,224 - Pocetak programa P na liniji 1
+INFO  06:18:18,225 - #47 int
+INFO  06:18:18,225 - #47 size
+INFO  06:18:18,225 - #17 =
+INFO  06:18:18,226 - #48 10
+INFO  06:18:18,226 - #44 ;
+INFO  06:18:18,226 - #4 class
+INFO  06:18:18,226 - #47 Table
+INFO  06:18:18,227 - #38 {
+INFO  06:18:18,227 - Deklarisana klasa Table na liniji 5
+INFO  06:18:18,227 - #47 int
+INFO  06:18:18,227 - #47 pos
+INFO  06:18:18,227 - #40 [
+INFO  06:18:18,228 - #41 ]
+INFO  06:18:18,228 - #45 ,
+INFO  06:18:18,228 - #47 neg
+INFO  06:18:18,228 - #40 [
+INFO  06:18:18,228 - #41 ]
+INFO  06:18:18,229 - #44 ;
+INFO  06:18:18,229 - #38 {
+INFO  06:18:18,229 - #7 void
+INFO  06:18:18,229 - #47 putp
+INFO  06:18:18,229 - #42 (
+INFO  06:18:18,233 - #47 int
+INFO  06:18:18,233 - #47 a
+INFO  06:18:18,233 - #45 ,
+INFO  06:18:18,233 - #47 int
+INFO  06:18:18,234 - #47 idx
+INFO  06:18:18,234 - #43 )
+INFO  06:18:18,234 - #38 {
+INFO  06:18:18,234 - #47 pos
+INFO  06:18:18,235 - #40 [
+INFO  06:18:18,235 - Koriscenje identifikatora pos na liniji 8
+INFO  06:18:18,235 - #47 idx
+INFO  06:18:18,235 - #41 ]
+INFO  06:18:18,235 - Koriscenje identifikatora idx na liniji 8
+INFO  06:18:18,236 - #17 =
+INFO  06:18:18,236 - #47 a
+INFO  06:18:18,236 - #44 ;
+INFO  06:18:18,236 - Koriscenje identifikatora a na liniji 8
+INFO  06:18:18,236 - #39 }
+INFO  06:18:18,237 - #7 void
+INFO  06:18:18,237 - #47 putn
+INFO  06:18:18,237 - #42 (
+INFO  06:18:18,237 - #47 int
+INFO  06:18:18,238 - #47 a
+INFO  06:18:18,238 - #45 ,
+INFO  06:18:18,238 - #47 int
+INFO  06:18:18,238 - #47 idx
+INFO  06:18:18,238 - #43 )
+INFO  06:18:18,239 - #38 {
+INFO  06:18:18,239 - #47 neg
+INFO  06:18:18,239 - #40 [
+INFO  06:18:18,239 - Koriscenje identifikatora neg na liniji 9
+INFO  06:18:18,239 - #47 idx
+INFO  06:18:18,240 - #41 ]
+INFO  06:18:18,240 - Koriscenje identifikatora idx na liniji 9
+INFO  06:18:18,240 - #17 =
+INFO  06:18:18,240 - #47 a
+INFO  06:18:18,241 - #44 ;
+INFO  06:18:18,241 - Koriscenje identifikatora a na liniji 9
+INFO  06:18:18,241 - #39 }
+INFO  06:18:18,241 - #47 int
+INFO  06:18:18,242 - #47 getp
+INFO  06:18:18,242 - #42 (
+INFO  06:18:18,242 - #47 int
+INFO  06:18:18,242 - #47 idx
+INFO  06:18:18,243 - #43 )
+INFO  06:18:18,243 - #38 {
+INFO  06:18:18,243 - #6 return
+INFO  06:18:18,243 - #47 pos
+INFO  06:18:18,244 - #40 [
+INFO  06:18:18,244 - Koriscenje identifikatora pos na liniji 10
+INFO  06:18:18,244 - #47 idx
+INFO  06:18:18,244 - #41 ]
+INFO  06:18:18,245 - Koriscenje identifikatora idx na liniji 10
+INFO  06:18:18,245 - #44 ;
+INFO  06:18:18,245 - #39 }
+INFO  06:18:18,246 - #47 int
+INFO  06:18:18,246 - #47 getn
+INFO  06:18:18,246 - #42 (
+INFO  06:18:18,246 - #47 int
+INFO  06:18:18,246 - #47 idx
+INFO  06:18:18,247 - #43 )
+INFO  06:18:18,247 - #38 {
+INFO  06:18:18,247 - #6 return
+INFO  06:18:18,247 - #47 neg
+INFO  06:18:18,247 - #40 [
+INFO  06:18:18,247 - Koriscenje identifikatora neg na liniji 11
+INFO  06:18:18,248 - #47 idx
+INFO  06:18:18,248 - #41 ]
+INFO  06:18:18,248 - Koriscenje identifikatora idx na liniji 11
+INFO  06:18:18,248 - #44 ;
+INFO  06:18:18,248 - #39 }
+INFO  06:18:18,248 - #39 }
+INFO  06:18:18,249 - #39 }
+INFO  06:18:18,249 - #47 Table
+INFO  06:18:18,250 - #47 val
+INFO  06:18:18,251 - #44 ;
+INFO  06:18:18,251 - #38 {
+INFO  06:18:18,251 - #7 void
+INFO  06:18:18,251 - #47 main
+INFO  06:18:18,252 - #42 (
+INFO  06:18:18,252 - #43 )
+INFO  06:18:18,252 - #47 int
+INFO  06:18:18,253 - #47 x
+INFO  06:18:18,253 - #45 ,
+INFO  06:18:18,253 - #47 i
+INFO  06:18:18,253 - #44 ;
+INFO  06:18:18,253 - #38 {
+INFO  06:18:18,253 - #47 val
+INFO  06:18:18,254 - #17 =
+INFO  06:18:18,254 - Koriscenje identifikatora val na liniji 22
+INFO  06:18:18,254 - #8 new
+INFO  06:18:18,254 - #47 Table
+INFO  06:18:18,254 - #44 ;
+INFO  06:18:18,255 - #47 val
+INFO  06:18:18,255 - #46 .
+INFO  06:18:18,255 - Koriscenje identifikatora val na liniji 23
+INFO  06:18:18,255 - #47 pos
+INFO  06:18:18,255 - #17 =
+INFO  06:18:18,256 - #8 new
+INFO  06:18:18,256 - #47 int
+INFO  06:18:18,256 - #40 [
+INFO  06:18:18,257 - #47 size
+INFO  06:18:18,257 - #41 ]
+INFO  06:18:18,257 - Koriscenje identifikatora size na liniji 23
+INFO  06:18:18,257 - #44 ;
+INFO  06:18:18,258 - #47 val
+INFO  06:18:18,258 - #46 .
+INFO  06:18:18,258 - Koriscenje identifikatora val na liniji 24
+INFO  06:18:18,258 - #47 neg
+INFO  06:18:18,258 - #17 =
+INFO  06:18:18,268 - #8 new
+INFO  06:18:18,268 - #47 int
+INFO  06:18:18,268 - #40 [
+INFO  06:18:18,268 - #47 size
+INFO  06:18:18,269 - #41 ]
+INFO  06:18:18,269 - Koriscenje identifikatora size na liniji 24
+INFO  06:18:18,269 - #44 ;
+INFO  06:18:18,269 - #12 for
+INFO  06:18:18,269 - #42 (
+INFO  06:18:18,270 - #47 i
+INFO  06:18:18,270 - #17 =
+INFO  06:18:18,270 - Koriscenje identifikatora i na liniji 25
+INFO  06:18:18,270 - #48 0
+INFO  06:18:18,270 - #44 ;
+INFO  06:18:18,270 - #47 i
+INFO  06:18:18,270 - #34 <
+INFO  06:18:18,271 - Koriscenje identifikatora i na liniji 25
+INFO  06:18:18,271 - #47 size
+INFO  06:18:18,271 - #44 ;
+INFO  06:18:18,271 - Koriscenje identifikatora size na liniji 25
+INFO  06:18:18,271 - #47 i
+INFO  06:18:18,272 - #25 ++
+INFO  06:18:18,272 - Koriscenje identifikatora i na liniji 25
+INFO  06:18:18,272 - #43 )
+INFO  06:18:18,272 - #38 {
+INFO  06:18:18,272 - #47 val
+INFO  06:18:18,272 - #46 .
+INFO  06:18:18,273 - Koriscenje identifikatora val na liniji 27
+INFO  06:18:18,273 - #47 putp
+INFO  06:18:18,273 - #42 (
+INFO  06:18:18,273 - #48 0
+INFO  06:18:18,273 - #45 ,
+INFO  06:18:18,273 - #47 i
+INFO  06:18:18,273 - #43 )
+INFO  06:18:18,281 - Koriscenje identifikatora i na liniji 27
+INFO  06:18:18,282 - #44 ;
+INFO  06:18:18,282 - Poziv metodeputp na liniji 27
+INFO  06:18:18,282 - #47 val
+INFO  06:18:18,282 - #46 .
+INFO  06:18:18,283 - Koriscenje identifikatora val na liniji 28
+INFO  06:18:18,283 - #47 putn
+INFO  06:18:18,283 - #42 (
+INFO  06:18:18,283 - #48 0
+INFO  06:18:18,283 - #45 ,
+INFO  06:18:18,283 - #47 i
+INFO  06:18:18,283 - #43 )
+INFO  06:18:18,284 - Koriscenje identifikatora i na liniji 28
+INFO  06:18:18,284 - #44 ;
+INFO  06:18:18,284 - Poziv metodeputn na liniji 28
+INFO  06:18:18,284 - #39 }
+INFO  06:18:18,284 - #16 read
+INFO  06:18:18,285 - #42 (
+INFO  06:18:18,285 - #47 x
+INFO  06:18:18,285 - #43 )
+INFO  06:18:18,285 - Koriscenje identifikatora x na liniji 32
+INFO  06:18:18,285 - #44 ;
+INFO  06:18:18,285 - #12 for
+INFO  06:18:18,286 - #42 (
+INFO  06:18:18,286 - #44 ;
+INFO  06:18:18,286 - #47 x
+INFO  06:18:18,286 - #36 >
+INFO  06:18:18,286 - Koriscenje identifikatora x na liniji 33
+INFO  06:18:18,286 - #48 0
+INFO  06:18:18,287 - #44 ;
+INFO  06:18:18,287 - #43 )
+INFO  06:18:18,287 - #38 {
+INFO  06:18:18,287 - #10 if
+INFO  06:18:18,287 - #42 (
+INFO  06:18:18,287 - #48 0
+INFO  06:18:18,287 - #35 <=
+INFO  06:18:18,288 - #47 x
+INFO  06:18:18,288 - #30 &&
+INFO  06:18:18,288 - Koriscenje identifikatora x na liniji 34
+INFO  06:18:18,288 - #47 x
+INFO  06:18:18,288 - #34 <
+INFO  06:18:18,288 - Koriscenje identifikatora x na liniji 34
+INFO  06:18:18,288 - #47 size
+INFO  06:18:18,289 - #43 )
+INFO  06:18:18,289 - Koriscenje identifikatora size na liniji 34
+INFO  06:18:18,289 - #38 {
+INFO  06:18:18,289 - #47 val
+INFO  06:18:18,289 - #46 .
+INFO  06:18:18,289 - Koriscenje identifikatora val na liniji 36
+INFO  06:18:18,290 - #47 putp
+INFO  06:18:18,290 - #42 (
+INFO  06:18:18,290 - #47 val
+INFO  06:18:18,290 - #46 .
+INFO  06:18:18,290 - Koriscenje identifikatora val na liniji 36
+INFO  06:18:18,290 - #47 getp
+INFO  06:18:18,290 - #42 (
+INFO  06:18:18,291 - #47 x
+INFO  06:18:18,291 - #43 )
+INFO  06:18:18,291 - Koriscenje identifikatora x na liniji 36
+INFO  06:18:18,291 - #23 +
+INFO  06:18:18,291 - Poziv metodegetp na liniji 36
+INFO  06:18:18,291 - #48 1
+INFO  06:18:18,292 - #43 )
+ERROR 06:18:18,292 - Levom operandu ne moze da se dodeli vrednost na liniji 36
+INFO  06:18:18,292 - #44 ;
+INFO  06:18:18,292 - Poziv metodeputp na liniji 36
+ERROR 06:18:18,292 - Ne odgovarajuci br. parametara pri pozivu metode putp na liniji 36- Ocekuje se 2 parametara, a pozvano je sa 1
+INFO  06:18:18,292 - #39 }
+INFO  06:18:18,292 - #11 else
+INFO  06:18:18,293 - #10 if
+INFO  06:18:18,293 - #42 (
+INFO  06:18:18,293 - #24 -
+INFO  06:18:18,294 - #47 size
+INFO  06:18:18,294 - #34 <
+INFO  06:18:18,294 - Koriscenje identifikatora size na liniji 38
+INFO  06:18:18,295 - #47 x
+INFO  06:18:18,295 - #30 &&
+INFO  06:18:18,295 - Koriscenje identifikatora x na liniji 38
+INFO  06:18:18,295 - #47 x
+INFO  06:18:18,296 - #34 <
+INFO  06:18:18,296 - Koriscenje identifikatora x na liniji 38
+INFO  06:18:18,298 - #48 0
+INFO  06:18:18,298 - #43 )
+INFO  06:18:18,299 - #38 {
+INFO  06:18:18,299 - #47 val
+INFO  06:18:18,300 - #46 .
+INFO  06:18:18,300 - Koriscenje identifikatora val na liniji 40
+INFO  06:18:18,300 - #47 putn
+INFO  06:18:18,300 - #42 (
+INFO  06:18:18,300 - #47 val
+INFO  06:18:18,300 - #46 .
+INFO  06:18:18,301 - Koriscenje identifikatora val na liniji 40
+INFO  06:18:18,301 - #47 getn
+INFO  06:18:18,301 - #42 (
+INFO  06:18:18,301 - #24 -
+INFO  06:18:18,301 - #47 x
+INFO  06:18:18,301 - #43 )
+INFO  06:18:18,301 - Koriscenje identifikatora x na liniji 40
+INFO  06:18:18,301 - #23 +
+INFO  06:18:18,302 - Poziv metodegetn na liniji 40
+INFO  06:18:18,302 - #48 1
+INFO  06:18:18,302 - #43 )
+ERROR 06:18:18,302 - Levom operandu ne moze da se dodeli vrednost na liniji 40
+INFO  06:18:18,302 - #44 ;
+INFO  06:18:18,303 - Poziv metodeputn na liniji 40
+ERROR 06:18:18,303 - Ne odgovarajuci br. parametara pri pozivu metode putn na liniji 40- Ocekuje se 2 parametara, a pozvano je sa 1
+INFO  06:18:18,303 - #39 }
+INFO  06:18:18,303 - #16 read
+INFO  06:18:18,303 - #42 (
+INFO  06:18:18,303 - #47 x
+INFO  06:18:18,303 - #43 )
+INFO  06:18:18,304 - Koriscenje identifikatora x na liniji 42
+INFO  06:18:18,304 - #44 ;
+INFO  06:18:18,304 - #39 }
+INFO  06:18:18,304 - #39 }
+INFO  06:18:18,304 - #39 }
+INFO  06:18:18,305 - Broj globalnih prostih promenjivih:1
+INFO  06:18:18,305 - Broj globalnih nizova:0
+INFO  06:18:18,305 - Broj globalnih konstanti:1
+INFO  06:18:18,305 - Broj unutrasnjih klasa:1
+INFO  06:18:18,305 - Broj iskaza u main-u:13
+INFO  06:18:18,305 - Broj poziva metoda u main-u:6
+INFO  06:18:18,306 - Broj blokova naredbi:4
+INFO  06:18:18,306 - Broj funkcija glavnog programa:1
+INFO  06:18:18,306 - Broj funkcija unutrasnjih klasa:4
+INFO  06:18:18,306 - Broj naredbi kreiranja instanci unutrasnjih klasa:1
+INFO  06:18:18,306 - Broj pristupa clanovima natklase preko kljucne reci super:0
+INFO  06:18:18,306 - Print calls = 0
+ERROR 06:18:18,310 - Parsiranje NIJE uspesno zavrseno!

@@ -1,0 +1,210 @@
+INFO  05:32:19,476 - Compiling source file: /home/petart/workspace/MJCompiler/test/program.mj
+INFO  05:32:19,516 - #2 program
+INFO  05:32:19,516 - #47 Test11
+INFO  05:32:19,517 - #38 {
+INFO  05:32:19,517 - Pocetak programa Test11 na liniji 1
+INFO  05:32:19,517 - #47 int
+INFO  05:32:19,518 - #47 k
+INFO  05:32:19,518 - #42 (
+INFO  05:32:19,525 - #43 )
+INFO  05:32:19,525 - #38 {
+INFO  05:32:19,525 - #6 return
+INFO  05:32:19,526 - #48 7
+INFO  05:32:19,526 - #44 ;
+INFO  05:32:19,526 - #39 }
+INFO  05:32:19,527 - #47 int
+INFO  05:32:19,527 - #47 k2
+INFO  05:32:19,527 - #42 (
+INFO  05:32:19,527 - #47 int
+INFO  05:32:19,528 - #47 a
+INFO  05:32:19,528 - #45 ,
+INFO  05:32:19,528 - #47 int
+INFO  05:32:19,528 - #47 b
+INFO  05:32:19,528 - #45 ,
+INFO  05:32:19,529 - #47 bool
+INFO  05:32:19,529 - #47 c
+INFO  05:32:19,529 - #43 )
+INFO  05:32:19,529 - #38 {
+INFO  05:32:19,529 - #10 if
+INFO  05:32:19,529 - #42 (
+INFO  05:32:19,530 - #47 c
+INFO  05:32:19,530 - #43 )
+INFO  05:32:19,530 - Koriscenje identifikatora c na liniji 11
+INFO  05:32:19,530 - #6 return
+INFO  05:32:19,531 - #47 a
+INFO  05:32:19,531 - #23 +
+INFO  05:32:19,531 - Koriscenje identifikatora a na liniji 12
+INFO  05:32:19,531 - #47 b
+INFO  05:32:19,532 - #44 ;
+INFO  05:32:19,532 - Koriscenje identifikatora b na liniji 12
+INFO  05:32:19,532 - #6 return
+INFO  05:32:19,532 - #47 a
+INFO  05:32:19,533 - #24 -
+INFO  05:32:19,533 - Koriscenje identifikatora a na liniji 14
+INFO  05:32:19,533 - #47 b
+INFO  05:32:19,534 - #39 }
+ERROR 05:32:19,534 - 
+Sintaksna greska na liniji 15
+INFO  05:32:19,534 - #7 void
+INFO  05:32:19,534 - #47 main
+INFO  05:32:19,535 - #42 (
+INFO  05:32:19,537 - #43 )
+INFO  05:32:19,537 - #47 int
+INFO  05:32:19,537 - #47 a
+INFO  05:32:19,537 - #45 ,
+INFO  05:32:19,538 - #47 b
+INFO  05:32:19,538 - #45 ,
+INFO  05:32:19,538 - #47 c
+INFO  05:32:19,538 - #44 ;
+INFO  05:32:19,538 - #38 {
+INFO  05:32:19,538 - #47 a
+INFO  05:32:19,539 - #17 =
+DEBUG 05:32:19,539 - Uspesan oporavak od greske na liniji 14
+INFO  05:32:19,539 - Koriscenje identifikatora a na liniji 20
+INFO  05:32:19,539 - #48 1
+INFO  05:32:19,540 - #44 ;
+INFO  05:32:19,540 - #47 b
+INFO  05:32:19,541 - #17 =
+INFO  05:32:19,541 - Koriscenje identifikatora b na liniji 21
+INFO  05:32:19,541 - #48 2
+INFO  05:32:19,541 - #44 ;
+INFO  05:32:19,541 - #47 c
+INFO  05:32:19,542 - #17 =
+INFO  05:32:19,542 - Koriscenje identifikatora c na liniji 22
+INFO  05:32:19,542 - #48 3
+INFO  05:32:19,542 - #44 ;
+ERROR 05:32:19,543 - Ovaj tip se ne moze dodeliti promenjivoj c - Greska na liniji 22
+INFO  05:32:19,543 - #47 a
+INFO  05:32:19,543 - #18 +=
+INFO  05:32:19,543 - Koriscenje identifikatora a na liniji 24
+INFO  05:32:19,543 - #47 b
+INFO  05:32:19,544 - #18 +=
+INFO  05:32:19,544 - Koriscenje identifikatora b na liniji 24
+INFO  05:32:19,544 - #47 c
+INFO  05:32:19,544 - #44 ;
+INFO  05:32:19,544 - Koriscenje identifikatora c na liniji 24
+ERROR 05:32:19,545 - Nekompatibilni tipovi na liniji 24
+INFO  05:32:19,545 - #10 if
+INFO  05:32:19,545 - #42 (
+INFO  05:32:19,545 - #47 a
+INFO  05:32:19,546 - #29 %
+INFO  05:32:19,546 - Koriscenje identifikatora a na liniji 26
+INFO  05:32:19,546 - #48 2
+INFO  05:32:19,546 - #33 !=
+INFO  05:32:19,547 - #48 0
+INFO  05:32:19,547 - #43 )
+INFO  05:32:19,547 - #38 {
+INFO  05:32:19,548 - #15 print
+INFO  05:32:19,548 - #42 (
+INFO  05:32:19,548 - #47 a
+INFO  05:32:19,548 - #43 )
+INFO  05:32:19,548 - Koriscenje identifikatora a na liniji 27
+INFO  05:32:19,548 - #44 ;
+INFO  05:32:19,549 - #39 }
+INFO  05:32:19,549 - #11 else
+INFO  05:32:19,549 - #38 {
+INFO  05:32:19,549 - #15 print
+INFO  05:32:19,554 - #42 (
+INFO  05:32:19,554 - #47 k
+INFO  05:32:19,554 - #42 (
+INFO  05:32:19,554 - Koriscenje identifikatora k na liniji 29
+INFO  05:32:19,555 - #43 )
+INFO  05:32:19,555 - #43 )
+INFO  05:32:19,555 - Poziv metodek na liniji 29
+INFO  05:32:19,556 - #44 ;
+INFO  05:32:19,556 - #39 }
+INFO  05:32:19,556 - #15 print
+INFO  05:32:19,556 - #42 (
+INFO  05:32:19,557 - #47 b
+INFO  05:32:19,557 - #43 )
+INFO  05:32:19,557 - Koriscenje identifikatora b na liniji 32
+INFO  05:32:19,557 - #44 ;
+INFO  05:32:19,557 - #15 print
+INFO  05:32:19,558 - #42 (
+INFO  05:32:19,558 - #47 c
+INFO  05:32:19,558 - #43 )
+INFO  05:32:19,558 - Koriscenje identifikatora c na liniji 33
+INFO  05:32:19,559 - #44 ;
+INFO  05:32:19,559 - #47 b
+INFO  05:32:19,559 - #17 =
+INFO  05:32:19,560 - Koriscenje identifikatora b na liniji 35
+INFO  05:32:19,560 - #48 10
+INFO  05:32:19,560 - #44 ;
+INFO  05:32:19,560 - #12 for
+INFO  05:32:19,560 - #42 (
+INFO  05:32:19,561 - #47 a
+INFO  05:32:19,561 - #17 =
+INFO  05:32:19,561 - Koriscenje identifikatora a na liniji 36
+INFO  05:32:19,561 - #48 0
+INFO  05:32:19,572 - #44 ;
+INFO  05:32:19,572 - #47 a
+INFO  05:32:19,572 - #34 <
+INFO  05:32:19,572 - Koriscenje identifikatora a na liniji 36
+INFO  05:32:19,572 - #47 b
+INFO  05:32:19,573 - #44 ;
+INFO  05:32:19,573 - Koriscenje identifikatora b na liniji 36
+INFO  05:32:19,573 - #47 a
+INFO  05:32:19,573 - #25 ++
+INFO  05:32:19,573 - Koriscenje identifikatora a na liniji 36
+INFO  05:32:19,573 - #43 )
+INFO  05:32:19,574 - #38 {
+INFO  05:32:19,574 - #10 if
+INFO  05:32:19,574 - #42 (
+INFO  05:32:19,574 - #47 a
+INFO  05:32:19,574 - #32 ==
+INFO  05:32:19,574 - Koriscenje identifikatora a na liniji 38
+INFO  05:32:19,575 - #48 4
+INFO  05:32:19,575 - #43 )
+INFO  05:32:19,575 - #14 continue
+INFO  05:32:19,575 - #44 ;
+INFO  05:32:19,575 - #10 if
+INFO  05:32:19,576 - #42 (
+INFO  05:32:19,576 - #47 a
+INFO  05:32:19,576 - #32 ==
+INFO  05:32:19,576 - Koriscenje identifikatora a na liniji 39
+INFO  05:32:19,576 - #48 7
+INFO  05:32:19,576 - #43 )
+INFO  05:32:19,577 - #13 break
+INFO  05:32:19,577 - #44 ;
+INFO  05:32:19,577 - #15 print
+INFO  05:32:19,577 - #42 (
+INFO  05:32:19,577 - #47 a
+INFO  05:32:19,577 - #43 )
+INFO  05:32:19,577 - Koriscenje identifikatora a na liniji 40
+INFO  05:32:19,577 - #44 ;
+INFO  05:32:19,578 - #39 }
+INFO  05:32:19,578 - #15 print
+INFO  05:32:19,578 - #42 (
+INFO  05:32:19,578 - #47 k2
+INFO  05:32:19,578 - #42 (
+INFO  05:32:19,578 - Koriscenje identifikatora k2 na liniji 43
+INFO  05:32:19,579 - #48 5
+INFO  05:32:19,589 - #45 ,
+INFO  05:32:19,590 - #48 7
+INFO  05:32:19,590 - #45 ,
+INFO  05:32:19,590 - #50 true
+INFO  05:32:19,591 - #43 )
+INFO  05:32:19,591 - #43 )
+INFO  05:32:19,591 - Poziv metodek2 na liniji 43
+INFO  05:32:19,591 - #44 ;
+INFO  05:32:19,592 - #15 print
+INFO  05:32:19,592 - #42 (
+INFO  05:32:19,592 - #47 k2
+INFO  05:32:19,592 - #42 (
+INFO  05:32:19,592 - Koriscenje identifikatora k2 na liniji 44
+INFO  05:32:19,593 - #48 5
+INFO  05:32:19,593 - #45 ,
+INFO  05:32:19,593 - #48 7
+INFO  05:32:19,593 - #45 ,
+INFO  05:32:19,593 - #50 false
+INFO  05:32:19,593 - #43 )
+INFO  05:32:19,593 - #43 )
+INFO  05:32:19,594 - Poziv metodek2 na liniji 44
+INFO  05:32:19,594 - #44 ;
+INFO  05:32:19,594 - #39 }
+INFO  05:32:19,594 - #39 }
+ERROR 05:32:19,594 - 
+Sintaksna greska na liniji 49
+ERROR 05:32:19,595 - Fatalna greska, parsiranje se ne moze nastaviti na liniji 49
+INFO  05:32:19,595 - Print calls = 0
+ERROR 05:32:19,598 - Parsiranje NIJE uspesno zavrseno!

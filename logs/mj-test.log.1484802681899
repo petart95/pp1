@@ -1,0 +1,9 @@
+INFO  06:10:40,344 - Compiling source file: /home/petart/workspace/MJCompiler/test/program.mj
+INFO  06:10:40,400 - #2 program
+INFO  06:10:40,401 - #47 P
+INFO  06:10:40,401 - #3 const
+ERROR 06:10:40,401 - 
+Sintaksna greska na liniji 3
+ERROR 06:10:40,401 - Fatalna greska, parsiranje se ne moze nastaviti na liniji 3
+INFO  06:10:40,402 - Print calls = 0
+ERROR 06:10:40,404 - Parsiranje NIJE uspesno zavrseno!

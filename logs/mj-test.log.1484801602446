@@ -1,0 +1,40 @@
+INFO  05:51:01,870 - Compiling source file: /home/petart/workspace/MJCompiler/test/program.mj
+INFO  05:51:01,914 - #2 program
+INFO  05:51:01,915 - #47 Test14
+INFO  05:51:01,915 - #4 class
+INFO  05:51:01,916 - Pocetak programa Test14 na liniji 1
+INFO  05:51:01,916 - #47 A
+INFO  05:51:01,917 - #38 {
+INFO  05:51:01,917 - Deklarisana klasa A na liniji 3
+INFO  05:51:01,917 - #47 int
+INFO  05:51:01,918 - #47 x
+INFO  05:51:01,924 - #44 ;
+INFO  05:51:01,925 - #38 {
+INFO  05:51:01,925 - #7 void
+INFO  05:51:01,925 - #47 test
+INFO  05:51:01,925 - #42 (
+INFO  05:51:01,929 - #47 int
+INFO  05:51:01,929 - #47 x
+INFO  05:51:01,930 - #43 )
+INFO  05:51:01,930 - #47 int
+INFO  05:51:01,930 - #47 c
+INFO  05:51:01,930 - #44 ;
+INFO  05:51:01,930 - #47 char
+INFO  05:51:01,935 - #47 a
+INFO  05:51:01,935 - #44 ;
+INFO  05:51:01,936 - #38 {
+INFO  05:51:01,936 - #15 print
+INFO  05:51:01,936 - #42 (
+INFO  05:51:01,937 - #47 x
+INFO  05:51:01,937 - #23 +
+INFO  05:51:01,937 - Koriscenje identifikatora x na liniji 8
+INFO  05:51:01,938 - #48 1
+INFO  05:51:01,938 - #43 )
+INFO  05:51:01,938 - #44 ;
+INFO  05:51:01,939 - #15 print
+INFO  05:51:01,939 - #42 (
+INFO  05:51:01,939 - #47 this
+INFO  05:51:01,939 - #46 .
+INFO  05:51:01,939 - Koriscenje identifikatora this na liniji 9
+INFO  05:51:01,939 - #47 x
+INFO  05:51:01,940 - #43 )

@@ -1,0 +1,67 @@
+INFO  22:00:01,062 - Compiling source file: /home/petart/workspace/MJCompiler/test/program.mj
+INFO  22:00:01,101 - #2 program
+INFO  22:00:01,102 - #15 MJProgram
+INFO  22:00:01,102 - #15 int
+INFO  22:00:01,103 - #15 x
+INFO  22:00:01,103 - #5 ;
+INFO  22:00:01,105 - #15 int
+INFO  22:00:01,105 - Deklarisana promenljiva x na liniji 2
+INFO  22:00:01,106 - #15 y
+INFO  22:00:01,106 - #5 ;
+INFO  22:00:01,106 - #3 {
+INFO  22:00:01,106 - Deklarisana promenljiva y na liniji 2
+INFO  22:00:01,106 - #15 int
+INFO  22:00:01,107 - #15 k
+INFO  22:00:01,107 - #6 (
+INFO  22:00:01,107 - Obradjuje se funkcija k na liniji 5
+INFO  22:00:01,107 - #7 )
+INFO  22:00:01,107 - #15 int
+INFO  22:00:01,107 - #15 c
+INFO  22:00:01,108 - #5 ;
+INFO  22:00:01,108 - #3 {
+INFO  22:00:01,108 - Deklarisana promenljiva c na liniji 5
+INFO  22:00:01,108 - #15 c
+INFO  22:00:01,108 - #12 =
+INFO  22:00:01,109 - #14 0
+INFO  22:00:01,109 - #5 ;
+INFO  22:00:01,109 - #10 return
+INFO  22:00:01,109 - #15 c
+INFO  22:00:01,110 - #11 +
+INFO  22:00:01,110 - #14 3
+INFO  22:00:01,110 - #5 ;
+INFO  22:00:01,110 - #4 }
+INFO  22:00:01,110 - #15 int
+INFO  22:00:01,111 - #15 main
+INFO  22:00:01,111 - #6 (
+INFO  22:00:01,111 - Obradjuje se funkcija main na liniji 10
+INFO  22:00:01,111 - #7 )
+INFO  22:00:01,111 - #3 {
+INFO  22:00:01,112 - #9 print
+INFO  22:00:01,112 - #6 (
+INFO  22:00:01,112 - #14 1
+INFO  22:00:01,112 - #7 )
+INFO  22:00:01,112 - #5 ;
+INFO  22:00:01,112 - #15 x
+INFO  22:00:01,113 - #12 =
+INFO  22:00:01,113 - #15 y
+INFO  22:00:01,113 - #11 +
+INFO  22:00:01,113 - #14 3
+INFO  22:00:01,113 - #5 ;
+INFO  22:00:01,114 - #15 k
+INFO  22:00:01,114 - #6 (
+INFO  22:00:01,114 - #7 )
+INFO  22:00:01,114 - #5 ;
+INFO  22:00:01,114 - #9 print
+INFO  22:00:01,115 - Pronadjen poziv funkcije k na liniji 13
+INFO  22:00:01,115 - #6 (
+INFO  22:00:01,115 - #14 2
+INFO  22:00:01,115 - #7 )
+INFO  22:00:01,116 - #5 ;
+INFO  22:00:01,116 - #10 return
+INFO  22:00:01,116 - #14 0
+INFO  22:00:01,116 - #5 ;
+INFO  22:00:01,117 - #4 }
+INFO  22:00:01,117 - #4 }
+INFO  22:00:01,117 - Print calls = 2
+INFO  22:00:01,120 - Generating bytecode file: /home/petart/workspace/MJCompiler/test/program.obj
+INFO  22:00:01,123 - Parsiranje uspesno zavrseno!

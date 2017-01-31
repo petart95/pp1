@@ -1,0 +1,72 @@
+INFO  08:17:09,356 - Compiling source file: /home/petart/workspace/MJCompiler/test/program.mj
+INFO  08:17:09,396 - #2 program
+INFO  08:17:09,397 - #47 P
+INFO  08:17:09,397 - #4 class
+INFO  08:17:09,397 - Pocetak programa P na liniji 1
+INFO  08:17:09,398 - #47 A
+INFO  08:17:09,398 - #38 {
+INFO  08:17:09,398 - Deklarisana klasa A na liniji 3
+INFO  08:17:09,398 - #38 {
+INFO  08:17:09,399 - #47 char
+INFO  08:17:09,399 - #47 slovov
+INFO  08:17:09,399 - #42 (
+INFO  08:17:09,403 - #43 )
+INFO  08:17:09,403 - #38 {
+INFO  08:17:09,403 - #6 return
+INFO  08:17:09,404 - #49 o
+INFO  08:17:09,404 - #44 ;
+INFO  08:17:09,405 - #39 }
+INFO  08:17:09,405 - #39 }
+INFO  08:17:09,406 - #39 }
+INFO  08:17:09,406 - #4 class
+INFO  08:17:09,407 - #47 B
+INFO  08:17:09,407 - #5 extends
+INFO  08:17:09,407 - Deklarisana klasa B na liniji 12
+INFO  08:17:09,408 - #47 A
+INFO  08:17:09,408 - #38 {
+INFO  08:17:09,408 - #38 {
+INFO  08:17:09,408 - #47 char
+INFO  08:17:09,409 - #47 slovov
+INFO  08:17:09,409 - #42 (
+INFO  08:17:09,409 - #43 )
+INFO  08:17:09,409 - #38 {
+INFO  08:17:09,410 - #6 return
+INFO  08:17:09,410 - #49 k
+INFO  08:17:09,410 - #44 ;
+INFO  08:17:09,410 - #39 }
+INFO  08:17:09,410 - #39 }
+INFO  08:17:09,411 - #39 }
+INFO  08:17:09,411 - #47 Table
+INFO  08:17:09,411 - #47 val
+INFO  08:17:09,411 - Nije pronadjen tip Table u tabeli simbola
+INFO  08:17:09,412 - #44 ;
+INFO  08:17:09,412 - #38 {
+INFO  08:17:09,412 - #7 void
+INFO  08:17:09,412 - #47 main
+INFO  08:17:09,412 - #42 (
+INFO  08:17:09,413 - #43 )
+INFO  08:17:09,413 - #47 A
+INFO  08:17:09,413 - #47 x
+INFO  08:17:09,413 - #44 ;
+INFO  08:17:09,414 - #47 B
+INFO  08:17:09,414 - #47 y
+INFO  08:17:09,414 - #44 ;
+INFO  08:17:09,414 - #47 A
+INFO  08:17:09,414 - #47 z
+INFO  08:17:09,415 - #44 ;
+INFO  08:17:09,415 - #38 {
+INFO  08:17:09,415 - #47 z
+INFO  08:17:09,415 - #17 =
+INFO  08:17:09,416 - Koriscenje identifikatora z na liniji 29
+INFO  08:17:09,416 - #8 new
+INFO  08:17:09,416 - #47 B
+INFO  08:17:09,416 - #44 ;
+INFO  08:17:09,417 - #15 print
+INFO  08:17:09,417 - #42 (
+INFO  08:17:09,417 - #47 x
+INFO  08:17:09,418 - #46 .
+INFO  08:17:09,418 - Koriscenje identifikatora x na liniji 31
+INFO  08:17:09,418 - #47 slovo
+INFO  08:17:09,418 - #42 (
+INFO  08:17:09,418 - #43 )
+INFO  08:17:09,419 - #43 )

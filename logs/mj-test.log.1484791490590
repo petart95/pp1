@@ -1,0 +1,107 @@
+INFO  03:04:23,722 - Compiling source file: /home/petart/workspace/MJCompiler/test/program.mj
+INFO  03:04:23,760 - #2 program
+INFO  03:04:23,761 - #47 Test11
+INFO  03:04:23,761 - #38 {
+INFO  03:04:23,761 - Pocetak programa Test11 na liniji 1
+INFO  03:04:23,761 - #47 int
+INFO  03:04:23,762 - #47 k
+INFO  03:04:23,762 - #42 (
+INFO  03:04:23,765 - #43 )
+INFO  03:04:23,765 - #38 {
+INFO  03:04:23,766 - #6 return
+INFO  03:04:23,766 - #48 7
+INFO  03:04:23,766 - #44 ;
+INFO  03:04:23,768 - #39 }
+INFO  03:04:23,769 - #7 void
+INFO  03:04:23,770 - #47 main
+INFO  03:04:23,771 - #42 (
+INFO  03:04:23,771 - #43 )
+INFO  03:04:23,771 - #47 int
+INFO  03:04:23,771 - #47 a
+INFO  03:04:23,772 - #45 ,
+INFO  03:04:23,772 - #47 b
+INFO  03:04:23,772 - #45 ,
+INFO  03:04:23,772 - #47 c
+INFO  03:04:23,772 - #44 ;
+INFO  03:04:23,772 - #38 {
+INFO  03:04:23,773 - #47 a
+INFO  03:04:23,773 - #17 =
+INFO  03:04:23,773 - Koriscenje identifikatora a na liniji 12
+INFO  03:04:23,774 - #48 1
+INFO  03:04:23,774 - #44 ;
+INFO  03:04:23,774 - #47 b
+INFO  03:04:23,774 - #17 =
+INFO  03:04:23,775 - Koriscenje identifikatora b na liniji 13
+INFO  03:04:23,775 - #48 2
+INFO  03:04:23,775 - #44 ;
+INFO  03:04:23,775 - #47 c
+INFO  03:04:23,776 - #17 =
+INFO  03:04:23,776 - Koriscenje identifikatora c na liniji 14
+INFO  03:04:23,776 - #48 3
+INFO  03:04:23,776 - #44 ;
+INFO  03:04:23,776 - #47 a
+INFO  03:04:23,777 - #18 +=
+INFO  03:04:23,777 - Koriscenje identifikatora a na liniji 16
+INFO  03:04:23,777 - #47 b
+INFO  03:04:23,777 - #18 +=
+INFO  03:04:23,777 - Koriscenje identifikatora b na liniji 16
+INFO  03:04:23,778 - #47 c
+INFO  03:04:23,779 - #44 ;
+INFO  03:04:23,779 - Koriscenje identifikatora c na liniji 16
+INFO  03:04:23,780 - #10 if
+INFO  03:04:23,780 - #42 (
+INFO  03:04:23,780 - #47 a
+INFO  03:04:23,780 - #29 %
+INFO  03:04:23,781 - Koriscenje identifikatora a na liniji 18
+INFO  03:04:23,781 - #48 2
+INFO  03:04:23,781 - #32 ==
+INFO  03:04:23,781 - #48 0
+INFO  03:04:23,781 - #43 )
+INFO  03:04:23,782 - #38 {
+INFO  03:04:23,782 - #15 print
+INFO  03:04:23,783 - #42 (
+INFO  03:04:23,783 - #47 a
+INFO  03:04:23,783 - #43 )
+INFO  03:04:23,783 - Koriscenje identifikatora a na liniji 19
+INFO  03:04:23,783 - #44 ;
+INFO  03:04:23,784 - #39 }
+INFO  03:04:23,784 - #11 else
+INFO  03:04:23,784 - #38 {
+INFO  03:04:23,784 - #15 print
+INFO  03:04:23,785 - #42 (
+INFO  03:04:23,785 - #47 k
+INFO  03:04:23,785 - #42 (
+INFO  03:04:23,785 - Koriscenje identifikatora k na liniji 21
+INFO  03:04:23,785 - #43 )
+INFO  03:04:23,786 - #43 )
+INFO  03:04:23,786 - Poziv metodek na liniji 21
+INFO  03:04:23,786 - #44 ;
+INFO  03:04:23,787 - #39 }
+INFO  03:04:23,787 - #15 print
+INFO  03:04:23,788 - #42 (
+INFO  03:04:23,789 - #47 b
+INFO  03:04:23,789 - #43 )
+INFO  03:04:23,789 - Koriscenje identifikatora b na liniji 24
+INFO  03:04:23,790 - #44 ;
+INFO  03:04:23,790 - #15 print
+INFO  03:04:23,790 - #42 (
+INFO  03:04:23,790 - #47 c
+INFO  03:04:23,790 - #43 )
+INFO  03:04:23,791 - Koriscenje identifikatora c na liniji 25
+INFO  03:04:23,791 - #44 ;
+INFO  03:04:23,791 - #39 }
+INFO  03:04:23,791 - #39 }
+INFO  03:04:23,792 - Broj globalnih prostih promenjivih:0
+INFO  03:04:23,792 - Broj globalnih nizova:0
+INFO  03:04:23,793 - Broj globalnih konstanti:0
+INFO  03:04:23,793 - Broj unutrasnjih klasa:0
+INFO  03:04:23,793 - Broj iskaza u main-u:9
+INFO  03:04:23,793 - Broj poziva metoda u main-u:1
+INFO  03:04:23,793 - Broj blokova naredbi:2
+INFO  03:04:23,793 - Broj funkcija glavnog programa:2
+INFO  03:04:23,793 - Broj funkcija unutrasnjih klasa:0
+INFO  03:04:23,793 - Broj naredbi kreiranja instanci unutrasnjih klasa:0
+INFO  03:04:23,794 - Broj pristupa clanovima natklase preko kljucne reci super:0
+INFO  03:04:23,794 - Print calls = 0
+INFO  03:04:23,796 - Generating bytecode file: /home/petart/workspace/MJCompiler/test/program.obj
+INFO  03:04:23,797 - Parsiranje uspesno zavrseno!

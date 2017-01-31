@@ -1,0 +1,20 @@
+INFO  02:37:04,177 - Compiling source file: /home/petart/workspace/MJCompiler/test/program.mj
+INFO  02:37:04,220 - #2 program
+INFO  02:37:04,220 - #47 Test11
+INFO  02:37:04,220 - #38 {
+INFO  02:37:04,221 - Pocetak programa Test11 na liniji 1
+INFO  02:37:04,221 - #39 }
+INFO  02:37:04,224 - Broj globalnih prostih promenjivih:0
+INFO  02:37:04,224 - Broj globalnih nizova:0
+INFO  02:37:04,225 - Broj globalnih konstanti:0
+INFO  02:37:04,225 - Broj unutrasnjih klasa:0
+INFO  02:37:04,225 - Broj iskaza u main-u:0
+INFO  02:37:04,225 - Broj poziva metoda u main-u:0
+INFO  02:37:04,225 - Broj blokova naredbi:0
+INFO  02:37:04,225 - Broj funkcija glavnog programa:0
+INFO  02:37:04,226 - Broj funkcija unutrasnjih klasa:0
+INFO  02:37:04,226 - Broj naredbi kreiranja instanci unutrasnjih klasa:0
+INFO  02:37:04,226 - Broj pristupa clanovima natklase preko kljucne reci super:0
+INFO  02:37:04,226 - Print calls = 0
+INFO  02:37:04,229 - Generating bytecode file: /home/petart/workspace/MJCompiler/test/program.obj
+INFO  02:37:04,230 - Parsiranje uspesno zavrseno!

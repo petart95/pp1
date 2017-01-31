@@ -1,0 +1,1656 @@
+package rs.ac.bg.etf.pp1;
+
+import java.util.Stack;
+
+import java_cup.runtime.*;
+
+import org.apache.log4j.*;
+import org.apache.log4j.xml.DOMConfigurator;
+
+import rs.ac.bg.etf.pp1.util.Log4JUtils;
+
+import java.io.*;
+import rs.etf.pp1.symboltable.Tab;
+import rs.etf.pp1.symboltable.concepts.*;
+
+import rs.etf.pp1.mj.runtime.Code;
+
+parser code {:
+	
+	/*static {
+		DOMConfigurator.configure(Log4JUtils.instance().findLoggerConfigFile());
+		Log4JUtils.instance().prepareLogFile(Logger.getRootLogger());
+	}
+	
+	public static void main(String[] args) throws Exception {
+		
+		Logger log = Logger.getLogger(MJParser.class);
+		
+		Reader br = null;
+		try {
+			if (args.length < 2) {
+				log.error("Not enough arguments supplied! Usage: MJParser <source-file> <obj-file> ");
+				return;
+			}
+			File sourceCode = new File(args[0]);
+			if (!sourceCode.exists()) {
+				log.error("Source file [" + sourceCode.getAbsolutePath() + "] not found!");
+				return;
+			}
+				
+			log.info("Compiling source file: " + sourceCode.getAbsolutePath());
+			
+			br = new BufferedReader(new FileReader(sourceCode));
+			Yylex lexer = new Yylex(br);
+			
+			MJParser p = new MJParser(lexer);
+	        Symbol s = p.parse();  //pocetak parsiranja
+	        
+	        Tab.find("").equals("");
+	        Tab.dump();
+	        
+	        if (!p.errorDetected) {
+	        	File objFile = new File(args[1]);
+	        	log.info("Generating bytecode file: " + objFile.getAbsolutePath());
+	        	if (objFile.exists())
+	        		objFile.delete();
+	        	Code.write(new FileOutputStream(objFile));
+	        	
+	        	log.info("Parsiranje uspesno zavrseno!");
+	        }
+	        else {
+	        	log.error("Parsiranje NIJE uspesno zavrseno!");
+	        }
+	        
+		} 
+		finally {
+			if (br != null) try { br.close(); } catch (IOException e1) { log.error(e1.getMessage(), e1); }
+		}
+
+	}*/
+	
+	int printCallCount = 0;
+	boolean errorDetected = false;
+	Logger log = Logger.getLogger(getClass());
+	
+	// slede redefinisani metodi za prijavu gresaka radi izmene teksta poruke
+     
+    public void report_fatal_error(String message, Object info) throws java.lang.Exception {
+      done_parsing();
+      report_error(message, info);
+    }
+  
+    public void syntax_error(Symbol cur_token) {
+        report_error("\nSintaksna greska", cur_token);
+    }
+  
+    public void unrecovered_syntax_error(Symbol cur_token) throws java.lang.Exception {
+        report_fatal_error("Fatalna greska, parsiranje se ne moze nastaviti", cur_token);
+    }
+
+    public void report_error(String message, Object info) {
+    	errorDetected = true;
+    	StringBuilder msg = new StringBuilder(message); 
+    	if (info instanceof Symbol)
+            msg.append (" na liniji ").append(((Symbol)info).left);
+        log.error(msg.toString());
+    }
+    
+:}
+
+scan with {:
+	Symbol s = this.getScanner().next_token();
+	if (s != null && s.value != null) 
+		log.info(s.toString() + " " + s.value.toString());
+	return s;
+:}
+
+init with {:
+
+	Tab.init(); // Universe scope
+	
+	Tab.currentScope.addToLocals(new Obj(Obj.Type, "string", CUP$MJParser$actions.stringType));
+	Tab.currentScope.addToLocals(new Obj(Obj.Type, "bool", CUP$MJParser$actions.boolType));
+:}
+
+action code {:
+							   
+	Logger log = Logger.getLogger(getClass());
+	
+	public static final int String = 5;
+ 	public static final int Bool = 6;
+		
+  	public static final Struct stringType = new Struct(String),
+   		         			   boolType = new Struct(Bool);
+	  
+	
+	Struct currentType, currentMethType;
+	
+	Boolean main = false;
+	Boolean inside_class = false, inside_meth = false;
+	Boolean void_meth = false;
+	
+	int mainStatements = 0, mainMethodCalls = 0, StatementBlocks = 0, objCreations = 0, superUsed = 0;
+	int insideFunc = 0, outsideFunc = 0;
+	
+	Obj _this; // this u klasi koja se obradjuje
+ 	Obj currentClass;
+	Obj this_par;
+	
+	int tmpVarAdr = 999;
+	int VTablePC = 1000;
+	
+	boolean v_call = false;
+	
+	int codeForEqual = 1000;
+	
+	boolean isExpresionOperandDesignator = false;
+	Obj expresionOperand;
+
+	Stack<Integer> fixup_and = new Stack<Integer>();	 
+	Stack<Integer> fixup_or = new Stack<Integer>();	 
+	Stack<Integer> fixup_adr = new Stack<Integer>();
+
+	int fixup_for; 	 	 
+	int continuePosition;
+	boolean insideFor = false;
+	
+	void report_error(String message) {
+    	parser.errorDetected = true;
+        log.error(message);
+    }
+    
+    public static void put (int x)  {
+			buf[pc++] = (byte)x;
+	}
+	
+	public static byte[] buf = new byte[8192];
+	
+	public static int pc = 0;
+	
+  	public static void put2 (int x) { put(x>>8); put(x);  }
+  	public static void put4 (int x) { put2(x>>16); put2(x); }
+  	
+  	public static void loadConst (int n) {
+    if (0<=n&&n<=5) put (Code.const_n+n);
+    else if (n==-1) put (Code.const_m1);
+    else  { put (Code.const_); put4 (n); }
+  }
+:}
+
+///
+/// --- Terminals ---
+///
+
+// Key words
+terminal PROG, CONST, CLASS, EXTENDS, RETURN, VOID, NEW, STATIC;
+
+// Language constructs
+terminal IF, ELSE, FOR, BREAK, CONTINUE;
+
+// Functions
+terminal PRINT, READ;
+
+// Assigment Operators
+terminal EQUAL, PLUS_EQUAL, MINUS_EQUAL, MUL_EQUAL, DIV_EQUAL, MOD_EQUAL;
+
+// Addition Operators
+terminal PLUS, MINUS;
+
+// Unar Operators
+terminal INC, DEC;
+
+// Multiplication Operators
+terminal MUL, DIV, MOD;
+
+// Logical Operators
+terminal AND, OR;
+
+// Comparison Operators
+terminal EQUALS, NOT_EQUALS, LESS, LESS_EQUALS, GREATER, GREATER_EQUALS;
+
+// Braces
+terminal LBRACE, RBRACE;
+
+// Brackets
+terminal LBRACK, RBRACK;
+
+// Parentes
+terminal LPAREN, RPAREN;
+
+// Coma, dot, semicolom
+terminal SEMI, COMMA, DOT;
+
+// Identifier
+terminal String IDENT;
+
+// Types
+terminal Integer NUMBER;
+terminal Character CHAR;			  			  
+terminal Boolean BOOL;
+
+///
+/// --- Non terminals ---
+///
+
+// Program
+non terminal Program;
+non terminal Obj ProgName;
+non terminal DeclList, MethodDeclList;
+non terminal OpenScope, CloseScope;
+
+// Program -- DeclList
+non terminal /*DeclList, */Decl;
+
+// Program -- DeclList -- Decl
+non terminal ConstDecl, VarDecl, ClassDecl;
+
+// Program -- MethodDeclList
+non terminal /*MethodDeclList, */MethodDecl;
+
+// ConstDecl
+non terminal Obj Type;
+non terminal ConstList;
+
+// ConstDecl -- ConstList
+non terminal ConstListPart;
+
+// ConstDecl -- ConstList -- ConstListPart
+non terminal Obj Const;
+
+// VarDecl
+non terminal /*Type, */VarList;
+
+// VarDecl -- VarList
+non terminal Var;
+
+// ClassDecl
+non terminal ClassSignature, ClassBody, ClassExit;
+
+// ClassDecl -- ClassSignature
+non terminal String ClassBase;
+non terminal Obj ClassName;
+
+// ClassDecl -- ClassBody
+non terminal VarDeclList/*, MethodDeclList**/;
+
+// MethodDecl
+non terminal MethodStatic, MethodType, MethodDeclPart;
+
+// MethodDecl -- MethodDeclPart
+non terminal Obj MethodName;
+non terminal Integer MethodPars;
+non terminal MethodLocalVarDeclList, StatementList;
+
+// MethodDecl -- MethodDeclPart -- MethodPars
+non terminal Integer FormPars;
+
+// MethodDecl -- MethodDeclPart -- StatementList
+non terminal Statement;
+
+// FormPars
+non terminal FormPar;
+
+// Statmet
+non terminal StatementUnmatched, StatementMatched;
+non terminal CountStatements;
+
+// Statement -- StatementUnmatched
+non terminal DesignatorStatement;
+non terminal Integer Pc;
+non terminal FixupFor;
+non terminal ConditionFixed, DummyJumpEndFix, EndFix;
+
+// Statement -- StatementMatched
+non terminal Obj Designator;
+non terminal Struct Expr;
+non terminal CountStatementBlocks;
+
+// Statement -- StatementUnmatched -- DummyJumpEndFix
+non terminal DummyJump;
+
+// Statement -- StatementUnmatched -- ConditionFixed
+non terminal Condition;
+
+// DesignatorStatement
+non terminal Integer Assignop;
+non terminal Struct MethodCall;
+
+// DesignatorStatement -- MethodCall
+non terminal Boolean VCall;
+non terminal Stack<Struct> MethodSign;
+non terminal CountMethodCalls;
+
+// DesignatorStatement -- MethodCall -- MethodSign
+non terminal Stack<Struct> ActPars;
+
+// Condition
+non terminal CondTermFixed;
+
+// Condition -- CondTermFixed
+non terminal CondTerm;
+
+// CondTerm
+non terminal CondFact;
+
+// CondFact
+non terminal Integer Relop;
+
+// Expr
+non terminal Struct ExprPart;
+
+// Expr -- ExprPart
+non terminal Integer Addop;
+non terminal Struct Term;
+non terminal Boolean IsExpresionOperandDesignator;
+non terminal Obj ExpresionOperand;
+
+// Term
+non terminal Integer Mulop;
+non terminal Struct Factor;
+
+// Assignop
+non terminal Integer AddopRight, MulopRight;
+
+// Addopt
+non terminal Integer AddopLeft/*, AddopRight*/;
+
+// Mulop
+non terminal Integer MulopLeft/*, MulopRight*/;
+
+///
+///	--- Progrma ---
+///
+///	Program = ʺprogramʺ ident {ConstDecl | VarDecl | ClassDecl} ʺ{ʺ {MethodDecl} ʺ}ʺ.
+///
+/// used non terminals Obj ProgName, DeclList, MethodDeclList, OpenScope, CloseScope;
+/// used terminals PROG, LBRACE, RBRACE;
+
+Program ::= 
+	PROG ProgName:p OpenScope DeclList LBRACE MethodDeclList {:
+		Tab.chainLocalSymbols(p); 
+	:} 
+	RBRACE CloseScope {:
+		Code.dataSize = VTablePC;
+				
+		int array_count = 0;
+		int var_count = 0;
+		int con_count = 0;
+		int class_count = 0;
+				
+		for(Obj s : p.getLocalSymbols())
+			if(s.getKind() == Obj.Var)
+				if(s.getType().getKind() == Struct.Array)
+					array_count++;
+				else
+					var_count++;
+			else if(s.getKind() == Obj.Con)
+				con_count++;
+			else if(s.getKind() == Obj.Type)
+				class_count++;
+									
+		log.info("Broj globalnih prostih promenjivih:" + var_count);
+		log.info("Broj globalnih nizova:" + array_count);
+		log.info("Broj globalnih konstanti:" + con_count);
+		log.info("Broj unutrasnjih klasa:" + class_count);
+		log.info("Broj iskaza u main-u:" + mainStatements);
+		log.info("Broj poziva metoda u main-u:" + mainMethodCalls);
+		log.info("Broj blokova naredbi:" + StatementBlocks);
+		log.info("Broj funkcija glavnog programa:" + outsideFunc);
+		log.info("Broj funkcija unutrasnjih klasa:" + insideFunc);
+		log.info("Broj naredbi kreiranja instanci unutrasnjih klasa:" + objCreations);
+		log.info("Broj pristupa clanovima natklase preko kljucne reci super:" + superUsed);	
+	:};
+		
+// Progrma -- ProgName
+// ProgName = ident
+// used terminals IDENT;
+
+ProgName ::= 
+	IDENT:pName	{:  
+		RESULT = Tab.insert(Obj.Prog, pName, Tab.noType);
+		log.info("Pocetak programa " + pName + " na liniji " + pNameleft);
+	:};
+
+// Progrma -- DeclList
+// DeclList = {ConstDecl | VarDecl | ClassDecl}
+// used non terminasls DeclList, Decl, epsilon;
+
+DeclList ::= 
+	DeclList Decl 
+	| 
+	/* epsilon */;
+
+// Progrma -- DeclList -- Decl
+// Decl = ConstDecl | VarDecl | ClassDecl
+// used non terminal ConstDecl, VarDecl, ClassDecl;
+
+Decl ::= 
+	ConstDecl 
+	| 
+	VarDecl 
+	| 
+	ClassDecl;
+	
+// Progrma -- MethodDeclList
+// MethodDeclList = {MethodDecl}
+// used non terminals MethodDeclList, MethodDecl, epsilon;
+
+MethodDeclList ::= 
+	MethodDeclList MethodDecl 
+	| 
+	/* epsilon */;
+
+// Progrma -- OpenScope	
+
+OpenScope ::= {: 
+	Tab.openScope(); 
+:};
+
+// Progrma -- CloseScope	
+
+CloseScope ::= {: 
+	Tab.closeScope(); 
+:};
+
+///
+/// --- Constant Declaeation ---
+///
+///	ConstDecl = ʺconstʺ Type identʺ=ʺ(numConst | charConst | boolConst) {, ident ʺ=ʺ (numConst | charConst | boolConst)} ʺ;"
+///
+/// used non terminals Type, ConstList, error;
+/// used terminals CONST, SEMI;
+
+ConstDecl ::= 
+	CONST Type ConstList SEMI 
+	|
+	CONST error SEMI:s {: 
+		log.debug("Uspesan oporavak od greske na liniji " + sleft + " pri definisanju konstante"); 
+  	:};
+  	
+// ConstDecl -- ConstList
+// ConstList = identʺ=ʺ(numConst | charConst | boolConst) {, ident ʺ=ʺ (numConst | charConst | boolConst)}
+// used non terminals ConstList, ConstListPart;
+// used terminals COMMA;
+
+ConstList ::= 
+	ConstList COMMA  ConstListPart 
+	| 
+	ConstListPart;
+
+// ConstDecl -- ConstList -- ConstListPart
+// ConstListPart = ident ʺ=ʺ (numConst | charConst | boolConst)
+// used non terminals Obj Const;
+// used terminals IDENT, EQAL;
+
+ConstListPart ::= 
+	IDENT:name EQUAL Const:o {:
+		if(Tab.currentScope.findSymbol(name) != null)
+	 		report_error("Vec postoji identifikator " + name);
+		else {
+			Obj con = Tab.insert(Obj.Con, name, currentType);
+	  		con.setAdr(o.getAdr());
+				  		
+			if(o.getType() != currentType)
+	  			report_error("Greska u tipu na liniji " + oleft);
+		 	}
+	:};
+
+// ConstDecl -- ConstList -- ConstListPart -- Const
+// Const = numConst | charConst | boolConst
+// used terminals NUMBER, CHAR, BOOL;
+
+Const ::= 
+	NUMBER:val {: 
+		RESULT = new Obj(Obj.Con, "", Tab.intType);  
+		RESULT.setAdr((int)val); // U adr se pamti vrednost konstante
+	:}
+	| 
+	CHAR:val {: 
+		RESULT = new Obj(Obj.Con, "", Tab.charType);  
+		RESULT.setAdr(val);
+	:} 
+	| 
+	BOOL:val {: 
+		RESULT = new Obj(Obj.Con, "", boolType);  
+		RESULT.setAdr(val ? 1:0);
+	:};
+	
+///
+///	--- Variable Declaeation ---
+///
+/// VarDecl = Type ident [ʺ[ʺ ʺ]ʺ] {ʺ,ʺ ident [ʺ[ʺ ʺ]ʺ]} ʺ;ʺ
+///
+/// used non terminals Type, VarList, error;
+/// used terminals SEMI;
+
+VarDecl ::= 
+	Type VarList SEMI
+	|
+	Type error SEMI:s {: 
+		log.debug("Uspesan oporavak od greske na liniji " + sleft + " pri definisanju promenjive"); 
+	:};
+	
+// VarDecl -- VarList
+// VarList = ident [ʺ[ʺ ʺ]ʺ] {ʺ,ʺ ident [ʺ[ʺ ʺ]ʺ]} 
+// used non terminals VarList, Var;
+// used terminals COMMA;
+
+VarList ::= 
+	VarList COMMA Var 
+	| 
+	Var;
+
+// VarDecl -- VarList -- Var
+// Var = ident [ʺ[ʺ ʺ]ʺ]
+// used terminals IDENT, LBRACL, RBRACK;
+
+Var ::= 
+	IDENT:name {:
+		if(!inside_class && !inside_meth)
+			Code.dataSize++;
+		Tab.insert(inside_class && !inside_meth ? Obj.Fld : Obj.Var, name, currentType);  
+	:}
+ 	|
+ 	IDENT:name LBRACK RBRACK {:
+ 		if(!inside_class && !inside_meth)
+			Code.dataSize++;
+		Tab.insert(inside_class && !inside_meth ? Obj.Fld : Obj.Var, name, new Struct(Struct.Array, currentType));  
+	:};
+	
+///
+/// --- Class Declaeation ---
+///
+///	ClassDecl = ʺclassʺ ident [ʺextendsʺ Type] ʺ{ʺ  {VarDecl} [ ʺ{ʺ {MethodDecl} ʺ}ʺ ] ʺ}ʺ
+///
+/// used non terminals ClassSignature, ClassBody, ClassExit;
+/// used terminals LBRACE, RBRACE;
+
+ClassDecl ::= 
+	ClassSignature LBRACE ClassBody RBRACE ClassExit;
+
+// ClassDecl -- ClassSignature
+// ClassSignature = ʺclassʺ ident [ʺextendsʺ Type]
+// used non terminal String ClassBase, Obj ClassName, OpenScope;
+// used terminals CLASS, EXTENDS;
+
+ClassSignature ::= 
+	CLASS ClassName:c OpenScope	{:
+		Tab.insert(Obj.Fld, "@vtable", Tab.noType);
+	:}
+	|
+	CLASS ClassName:c EXTENDS ClassBase:base OpenScope {:
+		Tab.insert(Obj.Fld, "@vtable", Tab.noType);
+			  		
+		Obj b = Tab.find(base);
+				  		
+		for(Obj o : b.getType().getMembers().symbols())
+			if(!o.getName().equals("@vtable")) {
+				Obj n = Tab.insert(o.getKind(), "super." + o.getName(), o.getType());
+				n.setAdr(o.getAdr());
+			}
+			  	
+	:};
+
+// ClassDecl -- ClassSignature -- ClassName
+// ClassName = IDENT;
+// used terminals IDENT;
+
+ClassName ::= 
+	IDENT:name {:
+		log.info("Deklarisana klasa " + name + " na liniji " + nameleft);
+		inside_class = true;
+		RESULT = currentClass = Tab.insert(Obj.Type, name, new Struct(Struct.Class));
+	  	
+		currentClass.setAdr(VTablePC); // vTable
+	:};
+
+// ClassDecl -- ClassSignature -- ClassBase
+// ClassBase = IDENT;
+// used terminals IDENT;
+
+ClassBase ::= 
+	IDENT:name {:
+		RESULT = name;
+	:}
+	|
+	error:e {:
+		log.debug("Uspesan oporavak od greske na liniji " + eleft + " pri nasledjivanju klasa"); 
+	:};
+
+// ClassDecl -- ClassBody
+// ClassBody = {VarDecl} [ ʺ{ʺ {MethodDecl} ʺ}ʺ ] 
+// used non terminals VarDeclList, MethodDeclList;
+// usd terminals LBRACE, RBRACE;
+
+ClassBody ::=
+	VarDeclList
+	|
+	VarDeclList LBRACE MethodDeclList RBRACE;
+
+// ClassDecl -- ClassBody -- VarDeclList
+// VarDeclList = {VarDecl}
+// used terminals VarDeclList, VarDecl, epsilon;
+
+VarDeclList ::= 
+	VarDeclList VarDecl 
+	|
+	/* epsilon */;
+	
+// ClassDecl -- ClassExit
+// used terminals CloseScope;
+
+ClassExit ::= {:
+	Tab.chainLocalSymbols(currentClass.getType());
+	inside_class = false;
+ 					
+	loadConst(-2);
+				   	
+	put (Code.putstatic); 
+	put2 (VTablePC++);
+:} CloseScope;	
+	
+///
+/// --- Method Declaeation ---
+///
+///	MethodDecl = ["static"] (Type | ʺvoidʺ) ident ʺ(ʺ [FormPars] ʺ)ʺ {VarDecl} ʺ{ʺ {Statement} ʺ}ʺ
+///
+/// used non terminals MethodStatic, MethodType, MethodDeclParty;
+
+MethodDecl ::= 
+	MethodStatic MethodType MethodDeclPart {:
+		void_meth = false;
+ 	:};
+
+// MethodDecl -- MethodStatic
+// MethodStatic = ["static"]
+// used non terminals epsilon;
+// used terminals STATIC;
+
+MethodStatic ::=
+	STATIC {:
+		// TODO
+	:}
+	|
+	/* epsilon */;
+
+// MethodDecl -- MethodType
+// MethodType = (Type | ʺvoidʺ)
+// used non terminals Type;
+// used terminals VOID;
+
+MethodType ::= 
+	Type
+	| 
+	VOID {:
+		void_meth = true;
+		currentType = Tab.noType;
+ 	:};
+
+// MethodDecl -- MethodDeclPart
+// MethodDeclPart = ident ʺ(ʺ [FormPars] ʺ)ʺ {VarDecl} ʺ{ʺ {Statement} ʺ}ʺ
+// used non terminals MethodName, OpenScope, MethodPars:n, MethodLocalVarDeclList, StatementList, CloseScope;
+// used terminals LPAREN, RPAREN, LBRACE, RBRACE;
+
+MethodDeclPart ::=
+	MethodName:m OpenScope {: 
+		inside_meth = true; 
+					  	
+		if(inside_class) {
+			_this = Tab.insert(Obj.Var, "this", Tab.noType);
+					  		
+			for(int i = 0; i < m.getName().length(); i++) {
+				loadConst(m.getName().charAt(i));
+							   	
+				put (Code.putstatic); 
+				put2 (VTablePC++);
+			}
+							
+			loadConst (-1); 
+						   	
+			put (Code.putstatic); 
+			put2 (VTablePC++);
+						   	
+			loadConst (m.getAdr()); 
+						   	
+			put (Code.putstatic); 
+			put2 (VTablePC++);
+		}
+	:} 
+	LPAREN MethodPars:n RPAREN MethodLocalVarDeclList {:
+		m.setLevel(n);
+		Code.put(Code.enter); 
+		Code.put(n + (inside_class ? 1 : 0));
+		Code.put(Tab.currentScope().getnVars());
+				   		
+		/*
+			for (Obj var : Tab.currentScope().getLocals().symbols())
+				if(var.getAdr() < n)
+				   Code.store(var);
+		*/	
+				   		
+	:}
+	LBRACE StatementList RBRACE {:
+		Tab.chainLocalSymbols(m); 
+		if (void_meth) {
+			Code.put(Code.exit); 
+			Code.put(Code.return_); 
+		} else { 
+			// postaviti trap funkciju na kraj tela funkcije,
+			// da izazove run time grešku ako se zaobiđe return 
+			Code.put(Code.trap); 
+			Code.put(1);
+		}
+		main = false; 
+	:} 
+	CloseScope {: 
+		inside_meth = false; 
+	:};
+
+// MethodDecl -- MethodDeclPart -- MethodName
+// MethodName = IDENT;
+// used terminals IDENT;
+
+MethodName ::= 
+	IDENT:name {:
+		currentMethType = currentType;
+			   		
+		if(inside_class) {
+			insideFunc++;
+		} else {
+			outsideFunc++;
+			if (name.equals("main")) {
+				main = true;
+				Code.mainPc = Code.pc;
+				   			
+				for(int i = 0; i < pc; i++)
+					Code.put(buf[i]);
+				   			
+				if (!void_meth)
+					report_error("Metod main mora biti void");
+			}
+		}
+				   	 
+		RESULT = Tab.insert(Obj.Meth, name, void_meth ? Tab.noType : currentType);
+		RESULT.setAdr(Code.pc);
+	:};
+
+// MethodDecl -- MethodDeclPart -- MethodPars
+// MethodPars = [FormPars]
+// used non terminals FormPars, error;
+// used terminals COMA;
+
+MethodPars ::= 
+	FormPars:n {:
+		RESULT = n;
+	:}
+	| 
+	/* epsilon */ {:
+		RESULT = 0;
+	:}
+	|
+	error:e COMMA FormPars:n {: 
+		RESULT = n;
+		log.debug("Uspesan oporavak od greske na liniji " + eleft + " u formalnim parametrima do ,"); 
+	:}
+	|
+	error:e {: 
+		RESULT = 0;
+		log.debug("Uspesan oporavak od greske na liniji " + eleft + " u formalnim parametrima do )"); 
+	:};
+	
+// MethodDecl -- MethodDeclPart -- MethodLocalVarDeclList
+// MethodLocalVarDeclList = {VarDecl}
+// used non terminals  VarDeclList, error;
+	
+MethodLocalVarDeclList ::= 
+	VarDeclList
+	|
+	error:e	{:
+		log.debug("Uspesan oporavak od greske na liniji " + eleft + " pri definisanju lokalne promenjive do {"); 
+	:};
+
+// MethodDecl -- MethodDeclPart -- StatementList
+// MethodLocalVarDeclList = {Statement}
+// used non terminals  StatementList, Statement;
+	 
+StatementList ::=
+	StatementList Statement 
+	| 
+	/* epsilon */;
+
+///
+///	--- Formal Parametars ---
+///
+///	FormPars = Type ident [ʺ[ʺ ʺ]ʺ] {ʺ,ʺ Type ident [ʺ[ʺ ʺ]ʺ]}
+///
+/// used non terminals FormPar;
+/// used terminals COMMA;	 
+	 
+FormPars ::= 
+	FormPars:n COMMA FormPar {:
+		RESULT = n + 1;
+	:}
+	|
+	FormPar {: 
+		RESULT = 1; 
+	:};
+	
+// FormPars -- FormPar
+// FormPar = Type ident [ʺ[ʺ ʺ]ʺ]
+// used non terminals Type;
+// used terminals IDENT LBRACK, RBRACK;
+
+FormPar ::= 
+	Type IDENT:name {:
+		Tab.insert(Obj.Var, name, currentType);
+	:}
+	|
+	Type IDENT:name LBRACK RBRACK {:
+		Tab.insert(Obj.Var, name, new Struct(Struct.Array, currentType));
+	:};
+
+///
+///	--- Type ---
+///
+///	Type =  ident
+///
+/// used terminals IDENT;
+
+Type ::= 
+	IDENT:typeName {:
+		Obj typeNode = RESULT = Tab.find(typeName);
+		if (typeNode == Tab.noObj) {
+			log.info("Nije pronadjen tip " + typeName + " u tabeli simbola");
+			currentType = Tab.noType;
+		}
+		else {
+			if (Obj.Type == typeNode.getKind()) {
+				currentType = typeNode.getType();
+			}
+			else {
+				report_error("Greska na liniji" + typeNameleft + ": Ime " + typeName + " ne predstavlja tip ");
+				currentType = Tab.noType;
+			}
+		}
+	:};
+	
+///
+/// --- Statements ---
+///
+///	Statement 	=  	DesignatorStatementʺ;ʺ
+///				|  	ʺifʺ ʺ(ʺ Condition ʺ)ʺ Statement [ʺelseʺ Statement]
+///				|	ʺforʺ ʺ(ʺ [DesignatorStatement ] ʺ;ʺ [Condition] ʺ;ʺ [DesignatorStatement] ʺ)ʺ Statement
+///				|	ʺbreakʺ ʺ;ʺ
+///				|	ʺcontinueʺ ʺ;ʺ
+///				|	ʺreturnʺ [Expr] ʺ;ʺ
+///				|  	ʺreadʺ ʺ(ʺ Designator ʺ)ʺ ʺ;ʺ
+///				|  	ʺprintʺ ʺ(ʺ Expr [ʺ,ʺ numConst] ʺ)ʺ ʺ;ʺ
+///				|	ʺ{ʺ {Statement} ʺ}ʺ
+///
+///	used non terminals StatementUnmatched, StatementMatched, CountStatements; 
+	
+Statement ::= 
+	StatementUnmatched CountStatements
+	| 
+	StatementMatched CountStatements;
+
+// Statement -- StatementUnmatched
+// used non terminals ConditionFixed, DummyJumpEndFix, DesignatorStatement, 
+//					  StatementMatched, StatementUnmatched, Statement;
+// used terminal IF, LPAREN, RPAREN, ELSE, FOR
+
+StatementUnmatched ::= 
+	IF LPAREN ConditionFixed RPAREN Statement EndFix
+	|
+	IF LPAREN ConditionFixed RPAREN StatementMatched DummyJumpEndFix ELSE StatementUnmatched EndFix
+	|
+	FOR LPAREN DesignatorStatement SEMI Pc:pc ConditionFixed FixupFor SEMI
+	Pc:pc1 DesignatorStatement RPAREN Pc:pc2 StatementUnmatched Pc:pc3 {:
+		insideFor = false;
+
+		byte[] swp_buf = new byte[pc2 - pc1];
+
+		for(int i = pc1; i < pc2; i++) {
+			swp_buf[i - pc1] = Code.buf[i];
+		}
+
+		for(int i = pc2; i < pc3; i++) {
+			Code.buf[i - pc2 + pc1] = Code.buf[i];
+		}
+
+		for(int i = pc3 - pc2 + pc1; i < pc3; i++) {
+			Code.buf[i] = swp_buf[i - pc3 + pc2 - pc1];
+		}
+
+		continuePosition = pc3 - pc2 + 2;
+
+		Code.buf[pc1 - 2] = (byte)(continuePosition >> 8);
+		Code.buf[pc1 - 1] = (byte)continuePosition;
+
+		Code.putJump(pc);  
+	:} EndFix;
+
+// Statement -- StatementMatched
+// used non terminals Obj Designator, Struct Expr, CountStatementBlocks;
+			   	   
+StatementMatched ::= 
+	IF LPAREN ConditionFixed RPAREN StatementMatched DummyJumpEndFix ELSE StatementMatched EndFix
+	|
+	FOR LPAREN DesignatorStatement SEMI Pc:pc ConditionFixed FixupFor SEMI
+	Pc:pc1 DesignatorStatement RPAREN Pc:pc2 StatementMatched Pc:pc3 {:
+		insideFor = false;
+
+		byte[] swp_buf = new byte[pc2 - pc1];
+
+		for(int i = pc1; i < pc2; i++) {
+			swp_buf[i - pc1] = Code.buf[i];
+		}
+
+		for(int i = pc2; i < pc3; i++) {
+			Code.buf[i - pc2 + pc1] = Code.buf[i];
+		}
+
+		for(int i = pc3 - pc2 + pc1; i < pc3; i++) {
+			Code.buf[i] = swp_buf[i - pc3 + pc2 - pc1];
+		}
+
+		continuePosition = pc3 - pc2 + 3;
+
+		Code.buf[pc1 - 2] = (byte)(continuePosition >> 8);
+		Code.buf[pc1 - 1] = (byte)continuePosition;
+
+		Code.putJump(pc);  
+	:} EndFix
+	|
+	DesignatorStatement	SEMI
+	|
+	BREAK SEMI:s {:
+		if(!insideFor)
+			report_error("Greska na liniji "+ sleft + ":break izvan for petlje!");
+		
+		Code.putJump(fixup_for + 3);
+	:}
+	|
+	CONTINUE SEMI:s {:
+		if(!insideFor)
+			report_error("Greska na liniji "+ sleft + ":continue izvan for petlje!");
+		
+		Code.putJump(fixup_for + 9);
+	:}
+	|
+	RETURN SEMI:s {:
+		Code.put(Code.exit);
+		Code.put(Code.return_);
+						
+		if (currentMethType != Tab.noType)
+			report_error("Greska na liniji "+ sleft + ":fali return sa izrazom");			
+	:}
+	|
+	RETURN Expr:t SEMI {:
+		Code.put(Code.exit);
+		Code.put(Code.return_);
+						
+		if (currentMethType == Tab.noType)
+			report_error("Greska na liniji "+ tleft + ":metod ne sme imati return sa izrazom jer je deklarisan sa void");
+		if (!t.assignableTo(currentMethType))
+			report_error("Greska na liniji "+ tleft + ":tip izraza nekompatibilan sa deklaracijom metoda");
+	:}
+	|
+	READ LPAREN Designator:o RPAREN SEMI {:
+		Code.put(o.getType() == Tab.charType ? Code.bread : Code.read);
+		Code.store(o);
+	:}
+	| 
+	PRINT LPAREN Expr:t RPAREN SEMI {:
+		Code.put(Code.const_n + 0);
+		Code.put(t == Tab.charType ? Code.bprint : Code.print);
+	:}
+	|
+	PRINT LPAREN Expr:t COMMA NUMBER:n RPAREN SEMI {:
+		Code.loadConst(n);
+		Code.put(t == Tab.charType ? Code.bprint : Code.print);
+	:}
+	|
+	OpenScope LBRACE StatementList CloseScope RBRACE CountStatementBlocks 
+	|
+	error:e SEMI {:
+		log.debug("Uspesan oporavak od greske na liniji " + eleft); 
+	:};
+
+
+// Statement -- StatementUnmatched -- Pc
+Pc ::= {: 
+	RESULT = Code.pc; 
+:};
+
+// Statement -- StatementUnmatched -- FixupFor
+FixupFor ::= {:
+	fixup_for = fixup_adr.peek();
+	insideFor = true;
+
+	Code.put(Code.jmp);
+	Code.put2(6);
+
+	Code.put(Code.jmp);
+	Code.put2(0);
+:};
+
+// Statement -- CountStatements 
+CountStatements ::= {:
+	if(main)  
+		mainStatements++; 
+:};
+
+// Statement -- StatementMatched -- CountStatementBlocks 
+CountStatementBlocks ::= {: 
+	StatementBlocks++;
+:};
+
+// Statement -- StatementUnmatched -- DummyJumpEndFix -- EndFix 
+EndFix ::= {:
+	Code.fixup(fixup_adr.pop());
+:};
+
+// Statement -- StatementUnmatched -- DummyJumpEndFix 
+DummyJumpEndFix ::= {:
+	Code.pc+=3; 
+	Code.fixup(fixup_adr.pop()); 
+	Code.pc-=3; 
+:}  DummyJump;
+
+// Statement -- StatementUnmatched -- DummyJumpEndFix -- DummyJump 
+DummyJump ::= {:
+	Code.putJump(0); // dummy
+	fixup_adr.push(Code.pc - 2);
+:};
+
+// Statement -- StatementUnmatched -- ConditionFixed
+// used non terminal Condition;
+
+ConditionFixed ::= 
+	Condition DummyJump {:
+		while(!fixup_or.empty())
+			Code.fixup(fixup_or.pop());
+	:};
+
+///
+///	---	Designator Statemnats ---
+///
+///	DesignatorStatement = Designator ( Assignop Expr | ʺ(ʺ [ActPars] ʺ)ʺ | ʺ++ʺ | ʺ‐‐ʺ)
+///
+/// used non terminals Designator, Assignop, Expr, MethodCall;
+/// used terminals SEMI, INC, DEC;
+
+DesignatorStatement ::=
+	Designator:o Assignop:op {:
+		if(op != codeForEqual)
+			Code.load(o);
+	:} Expr:t {:
+		if( (o.getType().getKind() != Struct.Class || t.getKind() != Struct.Class) && !t.assignableTo(o.getType())) {
+			report_error("Ovaj tip se ne moze dodeliti promenjivoj " + o.getName() + " - Greska na liniji " + oleft);
+		}
+		
+		if(op != codeForEqual)
+			Code.put(op - codeForEqual);
+			
+		Code.store(o);
+	:}
+	|
+	Designator:o INC {:
+		Code.load(o);
+		Code.put(Code.const_1);
+		Code.put(Code.add);
+		Code.store(o);
+	:}
+	| 
+	Designator:o DEC {:
+		Code.load(o);
+		Code.put(Code.const_1);
+		Code.put(Code.sub);
+		Code.store(o);
+	:}
+	| 
+	MethodCall
+	|
+	/* epsilon */;
+
+// DesignatorStatement -- MethodCall
+// used non terminals VCall, MethodSign:ms, CountMethodCalls;
+
+MethodCall ::= 
+	Designator:o VCall:v MethodSign:ms CountMethodCalls {: 
+		log.info("Poziv metode" + o.getName() + " na liniji " + oleft);
+			   		
+		if(ms.size() != o.getLevel()) {
+			report_error("Ne odgovarajuci br. parametara pri pozivu metode " + o.getName() + " na liniji " + oleft
+			   			+ "- Ocekuje se " + o.getLevel() + " parametara, a pozvano je sa " + ms.size());
+		}
+			   		
+		boolean first = true;
+		for(Obj param : o.getLocalSymbols()) {
+			if(v && first) {
+				first = false;
+				continue;
+			}
+			if(ms.empty())
+				break;
+			if(!ms.pop().assignableTo(param.getType())) {
+				report_error("Ne odgovarajuci parametar pri pozivu metode " + o.getName() + " na liniji " + oleft);
+			}
+		}
+			   		
+		if(v) {
+			Code.load(this_par);
+			Code.put(Code.getfield);
+			Code.put2(0);
+			   	    	
+			Code.put(Code.invokevirtual);
+			   	    	
+			for(int i = 0; i < o.getName().length(); i++)
+				Code.put4(o.getName().charAt(i));
+							   	
+			Code.put4(-1);
+		} else {
+			int dest_adr = o.getAdr() - Code.pc; // relativna adresa 
+			Code.put(Code.call);
+			Code.put2(dest_adr);
+		}
+			   		
+		RESULT = o.getType();
+	:};
+
+// DesignatorStatement -- MethodCall -- VCall
+VCall ::= {:
+	RESULT = v_call;
+:};
+
+// DesignatorStatement -- MethodCall -- MethodSign
+// uses non terminal ActPars;
+// uses terminals LPAREN, RPAREN;
+
+MethodSign ::= 
+	LPAREN RPAREN {: 
+		RESULT = new Stack<Struct>();
+	:}
+	| 
+	LPAREN ActPars:ap RPAREN {: 
+		RESULT = ap;
+	:};	
+
+// DesignatorStatement -- MethodCall -- CountMethodCalls
+CountMethodCalls ::= {: 
+	if(main)  
+		mainMethodCalls++; 
+:};
+
+///
+/// --- Actual parametars ---
+///
+///	ActPars =  Expr {ʺ,ʺ Expr}.
+///
+/// used non terminal Expr, ActPars;
+///	used terminals COMMA;
+
+ActPars ::= 
+	Expr:t COMMA ActPars:ap {: 
+		RESULT = ap; RESULT.push(t);  
+	:}
+	|
+	Expr:t {: 
+		RESULT = new Stack<Struct>(); RESULT.push(t);  
+	:};
+	
+///
+///	--- Condition ---
+///
+///	Condition = CondTerm {ʺ||ʺ CondTerm}
+///
+/// used non terminals Condition, CondTermFixed;
+/// used terminal OR;
+	
+Condition ::= 
+	Condition OR CondTermFixed 
+	|
+	CondTermFixed;
+
+// Condition -- CondTermFixed
+// used non terminals CondTerm;
+
+CondTermFixed ::= 
+	CondTerm {:
+		Code.putJump(0); // dummy
+		fixup_or.push(Code.pc - 2);
+				  	
+		while(!fixup_and.empty())
+			Code.fixup(fixup_and.pop());
+	:};
+
+///
+/// --- Condition Term ---
+///
+/// CondTerm = CondFact  {ʺ&&ʺ CondFact}.
+///
+///	used non terminals CondTerm, CondFact;
+	
+CondTerm ::= 
+	CondTerm AND CondFact 
+	| 
+	CondFact;
+	
+///
+/// --- Condition factor ---
+///
+/// CondFact =  Expr  [ Relop Expr ]
+/// 
+/// used non terminals Expr, Relop;
+
+CondFact ::= 
+	Expr {:
+		Code.loadConst(0);
+		Code.putFalseJump(Code.ne, 0); // dummy
+		fixup_and.push(Code.pc - 2);
+	:}
+	|
+	Expr:t1 Relop:op Expr:t2 {:
+		if(!t1.compatibleWith(t2)) {
+			report_error("Nekompatibilni tipovi na liniji " + opleft);
+		}
+		 		
+		Code.putFalseJump(op, 0); // dummy
+		fixup_and.push(Code.pc - 2);
+	:};
+
+///
+///	--- Expresion ---
+///
+/// Expr =  [ʺ‐ʺ] Term {Addop Term}
+///
+/// used non terminals ExprPart;
+/// used terminals MINUS;
+
+Expr ::= 
+	ExprPart:t {:
+		RESULT = t;
+	:}
+	|
+	MINUS ExprPart:t {:
+		isExpresionOperandDesignator = false;
+
+		Code.put(Code.neg);
+	 		
+	 	RESULT = t;
+	:};
+
+// Expr -- ExprPart
+// ExprPart = Term {Addop Term}
+// used non terminals ExprPart, Addop, Term, IsExpresionOperandDesignator;
+
+ExprPart ::= 
+	ExprPart:t1 IsExpresionOperandDesignator:isEOD ExpresionOperand:eo Addop:op Term:t2 {:
+		isExpresionOperandDesignator = false;
+
+		if(!t1.compatibleWith(t2)) {
+			report_error("Nekompatibilni tipovi na liniji " + opleft);
+		}
+		
+		if(!isEOD) {
+			report_error("Levom operandu ne moze da se dodeli vrednost na liniji " + opleft);
+		}
+
+		if(op > codeForEqual) {
+			Code.put(op - codeForEqual);
+			Code.store(eo);
+			Code.load(eo);
+		} else {
+			Code.put(op);
+		}
+		 		
+		RESULT = t1;
+	:}
+	|
+	Term:t {:
+		RESULT = t;
+	:};
+
+// Expr -- ExprPart -- IsExpresionOperandDesignator
+
+IsExpresionOperandDesignator ::= {:
+	RESULT = isExpresionOperandDesignator;
+:};
+
+// Expr -- ExprPart -- ExpresionOperand
+
+ExpresionOperand ::= {:
+	RESULT = expresionOperand;
+:};
+
+///
+/// ---	Term ---
+///
+/// Term =  Factor {Mulop Factor}
+///
+/// used non terminals Term, Mulop, Factor;
+
+Term ::= 
+	Term:t1 IsExpresionOperandDesignator:isEOD ExpresionOperand:eo Mulop:op Factor:t2 {:
+		isExpresionOperandDesignator = false;
+
+		if(!t1.compatibleWith(t2)) {
+			report_error("Nekompatibilni tipovi na liniji " + opleft);
+		}
+		
+		if(!isEOD) {
+			report_error("Levom operandu ne moze da se dodeli vrednost na liniji " + opleft);
+		}
+
+		if(op > codeForEqual) {
+			Code.put(op - codeForEqual);
+			Code.store(eo);
+			Code.load(eo);
+		} else {
+			Code.put(op);
+		}
+		 	
+		RESULT = t1;
+	:}
+	| 
+	Factor:t {:
+		RESULT = t;
+	:};
+
+///
+///	---	Factor ---
+///
+/// Factor	=	Designator [ʺ(ʺ [ActPars] ʺ)ʺ]
+///			|	numConst
+///			|	charConst
+///			|	boolConst
+///			|	ʺnewʺ Type [ʺ[ʺ Expr ʺ]ʺ]
+///			|	ʺ(ʺ Expr ʺ)ʺ
+///
+/// used non terminals Const, Expr, Type, MethodCall, Designator;
+/// used terminals LPAREN, RPAREN, NEW, LBRACK, RBRACK;
+
+Factor ::= 
+	Const:con {:
+		isExpresionOperandDesignator = false;
+ 		Code.load(con);
+		   		
+		RESULT = con.getType();
+	:}
+	|
+	LPAREN Expr:t RPAREN {:
+		isExpresionOperandDesignator = false;
+
+		RESULT = t;
+	:}
+	|
+	NEW Type LBRACK Expr RBRACK {:
+		isExpresionOperandDesignator = false;		
+
+		Code.put(Code.newarray);
+		Code.put(currentType==Tab.charType ? 0 : 1);
+		   		
+		RESULT = new Struct(Struct.Array, currentType);
+	:}
+	| 
+	NEW Type:t {:
+		isExpresionOperandDesignator = false;
+
+		objCreations++;
+		   		
+		Code.put(Code.new_);
+		Code.put2(currentType.getNumberOfFields()*4);
+		   		
+		Code.put(Code.putstatic); 
+		Code.put2(tmpVarAdr);
+		   		
+		Code.put(Code.getstatic); 
+		Code.put2(tmpVarAdr);
+		   		
+		Code.loadConst(t.getAdr());
+		   		
+		Code.put(Code.putfield); 
+		Code.put2(0);
+		   		
+		Code.put(Code.getstatic); 
+		Code.put2(tmpVarAdr);
+		   		
+		RESULT = currentType;
+	:}
+	|
+	MethodCall:t {:
+		isExpresionOperandDesignator = false;
+
+		RESULT = t;
+	:}
+	|
+	Designator:o {:
+		expresionOperand = o;
+		isExpresionOperandDesignator = true;
+
+		Code.load(o);
+
+		RESULT = o.getType();
+	:};
+	
+///
+///	---	Designator ---
+///
+/// Designator =  ident {ʺ.ʺ ident | ʺ[ʺ Expr ʺ]ʺ}.
+///
+/// used non terminals Designator, Expr;
+/// used terminals LBRACK, RBRACK, DOT, IDENT;
+		 
+Designator ::= 
+	Designator:o LBRACK {:
+		v_call = false;
+			   	   
+		if(o.getType() == stringType) {
+			Code.load(Tab.find("@@@" + o.getName()));
+			RESULT = new Obj(Obj.Elem, "", Tab.charType);
+		} else if (o.getType().getKind()==Struct.Array) { 
+			Code.load(o); // adr o na estek za kasnije aload ili baload
+			RESULT = new Obj(Obj.Elem, "", o.getType().getElemType());
+		} else {
+			report_error("Greska na liniji "  + oleft + ":tip nije niz");
+		}
+	:} 
+	Expr RBRACK 
+	|
+	Designator:o DOT IDENT:id {:	
+		v_call = true;
+		this_par = o;
+			   		
+		// TODO ovde treba da ide provera uslova da li je o instanca klase
+		Code.load(o); // adr o na estek za kasnije getfield ili putfield 
+			   		
+		for(Obj fld : o.getType().getMembers().symbols())
+			if(fld.getName().equals(id)) {
+				RESULT = fld;
+			  	break;
+			}
+	:}
+	|
+	IDENT:name {:   
+		v_call = false;
+			   	
+		int try_no = 0;
+		String s = name;
+	   		   		
+		do {
+			RESULT = Tab.find(s);
+			s = "super." + s;
+		} while(RESULT  == Tab.noObj && try_no++<10);
+	   		   		
+		if(RESULT.getKind() == Obj.Fld)
+			Code.load(_this);
+	   		   		
+		log.info("Koriscenje identifikatora " + name + " na liniji " +  nameleft);
+	   		   		
+		if(RESULT == Tab.noObj)
+	   		report_error("Greska na liniji "  + nameleft + ":promenjiva " + name + " ne postoji");
+	:}
+	|
+	Designator:o LBRACK error:e RBRACK {:
+		RESULT = o; // zbog null exception-a
+		log.debug("Uspesan oporavak od greske na liniji " + eleft + " pri indeksiranju niza"); 
+	:};
+	
+///
+///	---	Assigment Operator ---
+///
+/// Assignop = ʺ=ʺ | AddopRight | MulopRight
+///
+/// used non terminals AddopRight, MulopRight;
+/// used terminals  EQUAL;
+
+Assignop ::= 
+	EQUAL {:
+		RESULT = codeForEqual;
+	:}
+	|
+	AddopRight:op {:
+		RESULT = op;
+	:}
+	|
+	MulopRight:op {:
+		RESULT = op;
+	:};
+
+///
+///	---	Reletionship Operator ---
+///
+///	Relop =  ʺ==ʺ | ʺ!=ʺ | ʺ>ʺ | ʺ>=ʺ | ʺ<ʺ | ʺ<=ʺ.
+///
+/// used terminals EQUALS, NOT_EQUALS, LESS, LESS_EQUALS, GREATER, GREATER_EQUALS;
+
+Relop ::= 
+	EQUALS {:
+		RESULT = Code.eq; 
+	:} 
+	| 
+	NOT_EQUALS {: 
+		RESULT = Code.ne; 
+	:} 
+	| 
+	LESS {:
+		RESULT = Code.lt; 
+	:}
+	| 
+	LESS_EQUALS {:
+		RESULT = Code.le; :}
+	| 
+	GREATER {: 
+		RESULT = Code.gt; :} 
+	| 
+	GREATER_EQUALS {: 
+		RESULT = Code.ge; 
+	:};
+	
+///
+///	---	Addition operator ---
+///
+/// Addop =  AddopLeft | AddopRight
+///
+/// used non terminals AddopLeft, AddopRight;
+
+Addop ::= 
+	AddopLeft:op {:
+		RESULT = op;
+	:}
+	|
+	AddopRight:op {:
+		RESULT = op;
+	:};
+	
+///
+///	---	Addition operator left ---
+///
+/// AddopLeft =  ʺ+ʺ | ʺ‐ʺ
+///
+/// used terminals PLUS, MINUS;
+
+AddopLeft ::= 
+	PLUS {: 
+		RESULT = Code.add; 
+	:} 
+	| 
+	MINUS {: 
+		RESULT = Code.sub; 
+	:};
+
+///
+///	---	Addition operator righr ---
+///
+/// AddopRight = ʺ+=ʺ | ʺ‐=ʺ.
+///
+/// used terminals PLUS_EQUAL, MINUS_EQUAL;
+
+AddopRight ::= 
+	PLUS_EQUAL {: 
+		RESULT = Code.add + codeForEqual;
+	:} 
+	| 
+	MINUS_EQUAL {: 
+		RESULT = Code.sub + codeForEqual;
+	:};
+	
+///
+///	---	Multiplicarion operator ---
+///
+/// Mulop = MulopLeft | MulopRight 
+///
+/// used non terminals MulopLeft, MulopRight;
+
+Mulop ::= 
+	MulopLeft:op {:
+		RESULT = op;
+	:}
+	|
+	MulopRight:op {:
+		RESULT = op;
+	:};
+	
+///
+///	---	Multiplicarion operator left ---
+///
+/// MulopLeft =  ʺ*ʺ | ʺ/ʺ | ʺ%ʺ.
+/// 
+/// used terminals MUL, DIV, MOD;
+
+MulopLeft ::= 
+	MUL {: 
+		RESULT = Code.mul; 
+	:} 
+	| 
+	DIV {:
+		 RESULT = Code.div; 
+	:} 
+	| 
+	MOD {: 
+		RESULT = Code.rem; 
+	:};
+
+///
+///	---	Multiplicarion operator righr ---
+///
+/// MulopRight =  ʺ*=ʺ| ʺ/=ʺ | ʺ%=ʺ.
+/// 
+/// used terminals MUL_EQUAL, DIV_EQUAL, MOD_EQUAL;
+
+MulopRight ::= 
+	MUL_EQUAL {: 
+		RESULT = Code.mul + codeForEqual;
+	:} 
+	| 
+	DIV_EQUAL {:
+		RESULT = Code.div + codeForEqual;
+	:} 
+	| 
+	MOD_EQUAL {: 
+		RESULT = Code.rem + codeForEqual;
+	:};
+
+

@@ -1,0 +1,77 @@
+INFO  03:02:58,633 - Compiling source file: /home/petart/workspace/MJCompiler/test/program.mj
+INFO  03:02:58,673 - #2 program
+INFO  03:02:58,673 - #47 Test11
+INFO  03:02:58,674 - #38 {
+INFO  03:02:58,674 - Pocetak programa Test11 na liniji 1
+INFO  03:02:58,674 - #7 void
+INFO  03:02:58,675 - #47 main
+INFO  03:02:58,675 - #42 (
+INFO  03:02:58,678 - #43 )
+INFO  03:02:58,678 - #47 int
+INFO  03:02:58,678 - #47 a
+INFO  03:02:58,679 - #45 ,
+INFO  03:02:58,679 - #47 b
+INFO  03:02:58,679 - #45 ,
+INFO  03:02:58,679 - #47 c
+INFO  03:02:58,680 - #44 ;
+INFO  03:02:58,680 - #38 {
+INFO  03:02:58,680 - #47 a
+INFO  03:02:58,681 - #17 =
+INFO  03:02:58,681 - Koriscenje identifikatora a na liniji 8
+INFO  03:02:58,681 - #48 1
+INFO  03:02:58,681 - #44 ;
+INFO  03:02:58,682 - #47 b
+INFO  03:02:58,682 - #17 =
+INFO  03:02:58,682 - Koriscenje identifikatora b na liniji 9
+INFO  03:02:58,683 - #48 2
+INFO  03:02:58,683 - #44 ;
+INFO  03:02:58,683 - #47 c
+INFO  03:02:58,684 - #17 =
+INFO  03:02:58,684 - Koriscenje identifikatora c na liniji 10
+INFO  03:02:58,684 - #48 3
+INFO  03:02:58,684 - #44 ;
+INFO  03:02:58,685 - #47 a
+INFO  03:02:58,685 - #18 +=
+INFO  03:02:58,685 - Koriscenje identifikatora a na liniji 12
+INFO  03:02:58,685 - #47 b
+INFO  03:02:58,686 - #23 +
+INFO  03:02:58,686 - Koriscenje identifikatora b na liniji 12
+INFO  03:02:58,686 - #48 2
+INFO  03:02:58,686 - #18 +=
+INFO  03:02:58,687 - #47 c
+INFO  03:02:58,687 - #44 ;
+INFO  03:02:58,687 - Koriscenje identifikatora c na liniji 12
+ERROR 03:02:58,687 - Levom operandu ne moze da se dodeli vrednost na liniji 12
+INFO  03:02:58,687 - #15 print
+INFO  03:02:58,688 - #42 (
+INFO  03:02:58,688 - #47 a
+INFO  03:02:58,688 - #43 )
+INFO  03:02:58,688 - Koriscenje identifikatora a na liniji 14
+INFO  03:02:58,688 - #44 ;
+INFO  03:02:58,689 - #15 print
+INFO  03:02:58,689 - #42 (
+INFO  03:02:58,689 - #47 b
+INFO  03:02:58,689 - #43 )
+INFO  03:02:58,689 - Koriscenje identifikatora b na liniji 15
+INFO  03:02:58,690 - #44 ;
+INFO  03:02:58,690 - #15 print
+INFO  03:02:58,690 - #42 (
+INFO  03:02:58,690 - #47 c
+INFO  03:02:58,690 - #43 )
+INFO  03:02:58,691 - Koriscenje identifikatora c na liniji 16
+INFO  03:02:58,691 - #44 ;
+INFO  03:02:58,691 - #39 }
+INFO  03:02:58,692 - #39 }
+INFO  03:02:58,693 - Broj globalnih prostih promenjivih:0
+INFO  03:02:58,693 - Broj globalnih nizova:0
+INFO  03:02:58,693 - Broj globalnih konstanti:0
+INFO  03:02:58,693 - Broj unutrasnjih klasa:0
+INFO  03:02:58,694 - Broj iskaza u main-u:7
+INFO  03:02:58,694 - Broj poziva metoda u main-u:0
+INFO  03:02:58,694 - Broj blokova naredbi:0
+INFO  03:02:58,694 - Broj funkcija glavnog programa:1
+INFO  03:02:58,694 - Broj funkcija unutrasnjih klasa:0
+INFO  03:02:58,706 - Broj naredbi kreiranja instanci unutrasnjih klasa:0
+INFO  03:02:58,706 - Broj pristupa clanovima natklase preko kljucne reci super:0
+INFO  03:02:58,707 - Print calls = 0
+ERROR 03:02:58,709 - Parsiranje NIJE uspesno zavrseno!

@@ -1,0 +1,132 @@
+INFO  03:22:18,637 - Compiling source file: /home/petart/workspace/MJCompiler/test/program.mj
+INFO  03:22:18,681 - #2 program
+INFO  03:22:18,681 - #47 Test11
+INFO  03:22:18,682 - #38 {
+INFO  03:22:18,682 - Pocetak programa Test11 na liniji 1
+INFO  03:22:18,682 - #47 int
+INFO  03:22:18,682 - #47 k
+INFO  03:22:18,683 - #42 (
+INFO  03:22:18,686 - #43 )
+INFO  03:22:18,686 - #38 {
+INFO  03:22:18,686 - #6 return
+INFO  03:22:18,687 - #48 7
+INFO  03:22:18,687 - #44 ;
+INFO  03:22:18,687 - #39 }
+INFO  03:22:18,688 - #7 void
+INFO  03:22:18,688 - #47 main
+INFO  03:22:18,688 - #42 (
+INFO  03:22:18,689 - #43 )
+INFO  03:22:18,689 - #47 int
+INFO  03:22:18,689 - #47 a
+INFO  03:22:18,689 - #45 ,
+INFO  03:22:18,689 - #47 b
+INFO  03:22:18,690 - #45 ,
+INFO  03:22:18,690 - #47 c
+INFO  03:22:18,690 - #44 ;
+INFO  03:22:18,690 - #38 {
+INFO  03:22:18,691 - #47 a
+INFO  03:22:18,691 - #17 =
+INFO  03:22:18,691 - Koriscenje identifikatora a na liniji 12
+INFO  03:22:18,691 - #48 1
+INFO  03:22:18,691 - #44 ;
+INFO  03:22:18,692 - #47 b
+INFO  03:22:18,692 - #17 =
+INFO  03:22:18,692 - Koriscenje identifikatora b na liniji 13
+INFO  03:22:18,692 - #48 2
+INFO  03:22:18,693 - #44 ;
+INFO  03:22:18,693 - #47 c
+INFO  03:22:18,693 - #17 =
+INFO  03:22:18,693 - Koriscenje identifikatora c na liniji 14
+INFO  03:22:18,693 - #48 3
+INFO  03:22:18,694 - #44 ;
+INFO  03:22:18,694 - #47 a
+INFO  03:22:18,694 - #18 +=
+INFO  03:22:18,695 - Koriscenje identifikatora a na liniji 16
+INFO  03:22:18,695 - #47 b
+INFO  03:22:18,695 - #18 +=
+INFO  03:22:18,695 - Koriscenje identifikatora b na liniji 16
+INFO  03:22:18,696 - #47 c
+INFO  03:22:18,696 - #44 ;
+INFO  03:22:18,696 - Koriscenje identifikatora c na liniji 16
+INFO  03:22:18,696 - #10 if
+INFO  03:22:18,697 - #42 (
+INFO  03:22:18,697 - #47 a
+INFO  03:22:18,697 - #29 %
+INFO  03:22:18,697 - Koriscenje identifikatora a na liniji 18
+INFO  03:22:18,697 - #48 2
+INFO  03:22:18,698 - #33 !=
+INFO  03:22:18,698 - #48 0
+INFO  03:22:18,698 - #43 )
+INFO  03:22:18,699 - #38 {
+INFO  03:22:18,699 - #15 print
+INFO  03:22:18,700 - #42 (
+INFO  03:22:18,700 - #47 a
+INFO  03:22:18,700 - #43 )
+INFO  03:22:18,700 - Koriscenje identifikatora a na liniji 19
+INFO  03:22:18,700 - #44 ;
+INFO  03:22:18,701 - #39 }
+INFO  03:22:18,701 - #11 else
+INFO  03:22:18,701 - #38 {
+INFO  03:22:18,701 - #15 print
+INFO  03:22:18,701 - #42 (
+INFO  03:22:18,701 - #47 k
+INFO  03:22:18,702 - #42 (
+INFO  03:22:18,712 - Koriscenje identifikatora k na liniji 21
+INFO  03:22:18,712 - #43 )
+INFO  03:22:18,712 - #43 )
+INFO  03:22:18,712 - Poziv metodek na liniji 21
+INFO  03:22:18,713 - #44 ;
+INFO  03:22:18,713 - #39 }
+INFO  03:22:18,713 - #15 print
+INFO  03:22:18,713 - #42 (
+INFO  03:22:18,713 - #47 b
+INFO  03:22:18,714 - #43 )
+INFO  03:22:18,714 - Koriscenje identifikatora b na liniji 24
+INFO  03:22:18,714 - #44 ;
+INFO  03:22:18,714 - #15 print
+INFO  03:22:18,714 - #42 (
+INFO  03:22:18,715 - #47 c
+INFO  03:22:18,715 - #43 )
+INFO  03:22:18,715 - Koriscenje identifikatora c na liniji 25
+INFO  03:22:18,715 - #44 ;
+INFO  03:22:18,715 - #47 b
+INFO  03:22:18,715 - #17 =
+INFO  03:22:18,716 - Koriscenje identifikatora b na liniji 27
+INFO  03:22:18,716 - #48 10
+INFO  03:22:18,716 - #44 ;
+INFO  03:22:18,716 - #12 for
+INFO  03:22:18,716 - #42 (
+INFO  03:22:18,717 - #47 a
+INFO  03:22:18,717 - #17 =
+INFO  03:22:18,717 - Koriscenje identifikatora a na liniji 28
+INFO  03:22:18,717 - #48 0
+INFO  03:22:18,717 - #44 ;
+INFO  03:22:18,717 - #47 i
+ERROR 03:22:18,718 - 
+Sintaksna greska na liniji 28
+INFO  03:22:18,718 - #34 <
+INFO  03:22:18,718 - #47 n
+INFO  03:22:18,719 - #44 ;
+INFO  03:22:18,722 - #47 i
+INFO  03:22:18,722 - #25 ++
+INFO  03:22:18,723 - #43 )
+DEBUG 03:22:18,724 - Uspesan oporavak od greske na liniji 28
+INFO  03:22:18,724 - Koriscenje identifikatora i na liniji 28
+ERROR 03:22:18,724 - Greska na liniji 28:promenjiva i ne postoji
+ERROR 03:22:18,725 - 
+Sintaksna greska na liniji 28
+INFO  03:22:18,725 - #38 {
+INFO  03:22:18,726 - #15 print
+INFO  03:22:18,726 - #42 (
+INFO  03:22:18,726 - #47 a
+INFO  03:22:18,726 - #43 )
+INFO  03:22:18,727 - #44 ;
+INFO  03:22:18,727 - #39 }
+INFO  03:22:18,727 - #39 }
+INFO  03:22:18,727 - #39 }
+DEBUG 03:22:18,727 - Uspesan oporavak od greske na liniji 28
+ERROR 03:22:18,728 - 
+Sintaksna greska na liniji 34
+ERROR 03:22:18,728 - Fatalna greska, parsiranje se ne moze nastaviti na liniji 34
+INFO  03:22:18,728 - Print calls = 0
+ERROR 03:22:18,731 - Parsiranje NIJE uspesno zavrseno!

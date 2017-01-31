@@ -1,0 +1,33 @@
+INFO  05:48:51,872 - Compiling source file: /home/petart/workspace/MJCompiler/test/program.mj
+INFO  05:48:51,920 - #2 program
+INFO  05:48:51,920 - #47 Test14
+INFO  05:48:51,920 - #4 class
+INFO  05:48:51,920 - Pocetak programa Test14 na liniji 1
+INFO  05:48:51,921 - #47 A
+INFO  05:48:51,921 - #38 {
+INFO  05:48:51,921 - Deklarisana klasa A na liniji 3
+INFO  05:48:51,921 - #47 int
+INFO  05:48:51,922 - #47 x
+INFO  05:48:51,922 - #44 ;
+INFO  05:48:51,922 - #7 void
+ERROR 05:48:51,922 - 
+Sintaksna greska na liniji 6
+INFO  05:48:51,923 - #47 test
+INFO  05:48:51,923 - #42 (
+INFO  05:48:51,923 - #47 int
+INFO  05:48:51,925 - #47 x
+INFO  05:48:51,925 - #43 )
+INFO  05:48:51,925 - #47 int
+INFO  05:48:51,926 - #47 c
+INFO  05:48:51,926 - #44 ;
+INFO  05:48:51,926 - #47 char
+INFO  05:48:51,926 - #47 a
+INFO  05:48:51,926 - #44 ;
+DEBUG 05:48:51,927 - Uspesan oporavak od greske na liniji 6 pri definisanju promenjive
+INFO  05:48:51,927 - #38 {
+INFO  05:48:51,927 - #15 print
+ERROR 05:48:51,927 - 
+Sintaksna greska na liniji 7
+ERROR 05:48:51,928 - Fatalna greska, parsiranje se ne moze nastaviti na liniji 7
+INFO  05:48:51,928 - Print calls = 0
+ERROR 05:48:51,931 - Parsiranje NIJE uspesno zavrseno!

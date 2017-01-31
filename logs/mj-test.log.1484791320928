@@ -1,0 +1,75 @@
+INFO  03:01:47,260 - Compiling source file: /home/petart/workspace/MJCompiler/test/program.mj
+INFO  03:01:47,347 - #2 program
+INFO  03:01:47,348 - #47 Test11
+INFO  03:01:47,348 - #38 {
+INFO  03:01:47,348 - Pocetak programa Test11 na liniji 1
+INFO  03:01:47,349 - #7 void
+INFO  03:01:47,349 - #47 main
+INFO  03:01:47,349 - #42 (
+INFO  03:01:47,352 - #43 )
+INFO  03:01:47,353 - #47 int
+INFO  03:01:47,353 - #47 a
+INFO  03:01:47,354 - #45 ,
+INFO  03:01:47,354 - #47 b
+INFO  03:01:47,354 - #45 ,
+INFO  03:01:47,354 - #47 c
+INFO  03:01:47,354 - #44 ;
+INFO  03:01:47,355 - #38 {
+INFO  03:01:47,355 - #47 a
+INFO  03:01:47,355 - #17 =
+INFO  03:01:47,355 - Koriscenje identifikatora a na liniji 8
+INFO  03:01:47,356 - #48 1
+INFO  03:01:47,356 - #44 ;
+INFO  03:01:47,356 - #47 b
+INFO  03:01:47,357 - #17 =
+INFO  03:01:47,357 - Koriscenje identifikatora b na liniji 9
+INFO  03:01:47,357 - #48 2
+INFO  03:01:47,357 - #44 ;
+INFO  03:01:47,357 - #47 c
+INFO  03:01:47,358 - #17 =
+INFO  03:01:47,358 - Koriscenje identifikatora c na liniji 10
+INFO  03:01:47,358 - #48 3
+INFO  03:01:47,358 - #44 ;
+INFO  03:01:47,359 - #47 a
+INFO  03:01:47,359 - #18 +=
+INFO  03:01:47,359 - Koriscenje identifikatora a na liniji 12
+INFO  03:01:47,359 - #47 b
+INFO  03:01:47,360 - #23 +
+INFO  03:01:47,360 - Koriscenje identifikatora b na liniji 12
+INFO  03:01:47,360 - #47 c
+INFO  03:01:47,360 - #44 ;
+INFO  03:01:47,360 - Koriscenje identifikatora c na liniji 12
+INFO  03:01:47,361 - #15 print
+INFO  03:01:47,361 - #42 (
+INFO  03:01:47,361 - #47 a
+INFO  03:01:47,361 - #43 )
+INFO  03:01:47,362 - Koriscenje identifikatora a na liniji 14
+INFO  03:01:47,362 - #44 ;
+INFO  03:01:47,362 - #15 print
+INFO  03:01:47,362 - #42 (
+INFO  03:01:47,362 - #47 b
+INFO  03:01:47,363 - #43 )
+INFO  03:01:47,363 - Koriscenje identifikatora b na liniji 15
+INFO  03:01:47,363 - #44 ;
+INFO  03:01:47,363 - #15 print
+INFO  03:01:47,363 - #42 (
+INFO  03:01:47,364 - #47 c
+INFO  03:01:47,364 - #43 )
+INFO  03:01:47,364 - Koriscenje identifikatora c na liniji 16
+INFO  03:01:47,364 - #44 ;
+INFO  03:01:47,364 - #39 }
+INFO  03:01:47,365 - #39 }
+INFO  03:01:47,366 - Broj globalnih prostih promenjivih:0
+INFO  03:01:47,366 - Broj globalnih nizova:0
+INFO  03:01:47,366 - Broj globalnih konstanti:0
+INFO  03:01:47,366 - Broj unutrasnjih klasa:0
+INFO  03:01:47,367 - Broj iskaza u main-u:7
+INFO  03:01:47,367 - Broj poziva metoda u main-u:0
+INFO  03:01:47,367 - Broj blokova naredbi:0
+INFO  03:01:47,367 - Broj funkcija glavnog programa:1
+INFO  03:01:47,367 - Broj funkcija unutrasnjih klasa:0
+INFO  03:01:47,367 - Broj naredbi kreiranja instanci unutrasnjih klasa:0
+INFO  03:01:47,367 - Broj pristupa clanovima natklase preko kljucne reci super:0
+INFO  03:01:47,368 - Print calls = 0
+INFO  03:01:47,370 - Generating bytecode file: /home/petart/workspace/MJCompiler/test/program.obj
+INFO  03:01:47,371 - Parsiranje uspesno zavrseno!

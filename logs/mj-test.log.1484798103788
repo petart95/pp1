@@ -1,0 +1,146 @@
+INFO  04:50:51,328 - Compiling source file: /home/petart/workspace/MJCompiler/test/program.mj
+INFO  04:50:51,388 - #2 program
+INFO  04:50:51,388 - #47 Test11
+INFO  04:50:51,388 - #38 {
+INFO  04:50:51,389 - Pocetak programa Test11 na liniji 1
+INFO  04:50:51,390 - #47 int
+INFO  04:50:51,391 - #47 k
+INFO  04:50:51,391 - #42 (
+INFO  04:50:51,394 - #43 )
+INFO  04:50:51,395 - #38 {
+INFO  04:50:51,396 - #6 return
+INFO  04:50:51,396 - #48 7
+INFO  04:50:51,396 - #44 ;
+INFO  04:50:51,397 - #39 }
+INFO  04:50:51,397 - #7 void
+INFO  04:50:51,398 - #47 main
+INFO  04:50:51,398 - #42 (
+INFO  04:50:51,399 - #43 )
+INFO  04:50:51,399 - #47 int
+INFO  04:50:51,399 - #47 a
+INFO  04:50:51,399 - #45 ,
+INFO  04:50:51,400 - #47 b
+INFO  04:50:51,400 - #45 ,
+INFO  04:50:51,400 - #47 c
+INFO  04:50:51,400 - #44 ;
+INFO  04:50:51,401 - #38 {
+INFO  04:50:51,401 - #47 a
+INFO  04:50:51,402 - #17 =
+INFO  04:50:51,402 - Koriscenje identifikatora a na liniji 12
+INFO  04:50:51,403 - #48 1
+INFO  04:50:51,411 - #44 ;
+INFO  04:50:51,411 - #47 b
+INFO  04:50:51,411 - #17 =
+INFO  04:50:51,412 - Koriscenje identifikatora b na liniji 13
+INFO  04:50:51,412 - #48 2
+INFO  04:50:51,412 - #44 ;
+INFO  04:50:51,412 - #47 c
+INFO  04:50:51,412 - #17 =
+INFO  04:50:51,413 - Koriscenje identifikatora c na liniji 14
+INFO  04:50:51,413 - #48 3
+INFO  04:50:51,413 - #44 ;
+INFO  04:50:51,414 - #47 a
+INFO  04:50:51,414 - #18 +=
+INFO  04:50:51,414 - Koriscenje identifikatora a na liniji 16
+INFO  04:50:51,414 - #47 b
+INFO  04:50:51,415 - #18 +=
+INFO  04:50:51,415 - Koriscenje identifikatora b na liniji 16
+INFO  04:50:51,415 - #47 c
+INFO  04:50:51,415 - #44 ;
+INFO  04:50:51,415 - Koriscenje identifikatora c na liniji 16
+INFO  04:50:51,416 - #10 if
+INFO  04:50:51,416 - #42 (
+INFO  04:50:51,416 - #47 a
+INFO  04:50:51,416 - #29 %
+INFO  04:50:51,417 - Koriscenje identifikatora a na liniji 18
+INFO  04:50:51,417 - #48 2
+INFO  04:50:51,417 - #33 !=
+INFO  04:50:51,417 - #48 0
+INFO  04:50:51,417 - #43 )
+INFO  04:50:51,418 - #38 {
+INFO  04:50:51,419 - #15 print
+INFO  04:50:51,419 - #42 (
+INFO  04:50:51,419 - #47 a
+INFO  04:50:51,420 - #43 )
+INFO  04:50:51,420 - Koriscenje identifikatora a na liniji 19
+INFO  04:50:51,420 - #44 ;
+INFO  04:50:51,420 - #39 }
+INFO  04:50:51,420 - #11 else
+INFO  04:50:51,421 - #38 {
+INFO  04:50:51,421 - #15 print
+INFO  04:50:51,421 - #42 (
+INFO  04:50:51,421 - #47 k
+INFO  04:50:51,421 - #42 (
+INFO  04:50:51,422 - Koriscenje identifikatora k na liniji 21
+INFO  04:50:51,422 - #43 )
+INFO  04:50:51,423 - #43 )
+INFO  04:50:51,423 - Poziv metodek na liniji 21
+INFO  04:50:51,423 - #44 ;
+INFO  04:50:51,424 - #39 }
+INFO  04:50:51,424 - #15 print
+INFO  04:50:51,424 - #42 (
+INFO  04:50:51,424 - #47 b
+INFO  04:50:51,425 - #43 )
+INFO  04:50:51,425 - Koriscenje identifikatora b na liniji 24
+INFO  04:50:51,425 - #44 ;
+INFO  04:50:51,425 - #15 print
+INFO  04:50:51,425 - #42 (
+INFO  04:50:51,426 - #47 c
+INFO  04:50:51,426 - #43 )
+INFO  04:50:51,426 - Koriscenje identifikatora c na liniji 25
+INFO  04:50:51,426 - #44 ;
+INFO  04:50:51,426 - #47 b
+INFO  04:50:51,431 - #17 =
+INFO  04:50:51,432 - Koriscenje identifikatora b na liniji 27
+INFO  04:50:51,432 - #48 10
+INFO  04:50:51,432 - #44 ;
+INFO  04:50:51,432 - #12 for
+INFO  04:50:51,433 - #42 (
+INFO  04:50:51,433 - #47 a
+INFO  04:50:51,433 - #17 =
+INFO  04:50:51,433 - Koriscenje identifikatora a na liniji 28
+INFO  04:50:51,433 - #48 0
+INFO  04:50:51,433 - #44 ;
+INFO  04:50:51,434 - #47 a
+INFO  04:50:51,434 - #34 <
+INFO  04:50:51,434 - Koriscenje identifikatora a na liniji 28
+INFO  04:50:51,434 - #47 b
+INFO  04:50:51,434 - #44 ;
+INFO  04:50:51,434 - Koriscenje identifikatora b na liniji 28
+INFO  04:50:51,438 - #47 a
+INFO  04:50:51,448 - #25 ++
+INFO  04:50:51,450 - Koriscenje identifikatora a na liniji 28
+INFO  04:50:51,450 - #43 )
+INFO  04:50:51,450 - #38 {
+INFO  04:50:51,451 - #10 if
+INFO  04:50:51,451 - #42 (
+INFO  04:50:51,451 - #47 a
+INFO  04:50:51,451 - #32 ==
+INFO  04:50:51,451 - Koriscenje identifikatora a na liniji 31
+INFO  04:50:51,452 - #48 7
+INFO  04:50:51,452 - #43 )
+INFO  04:50:51,452 - #13 break
+INFO  04:50:51,452 - #44 ;
+INFO  04:50:51,453 - #15 print
+INFO  04:50:51,453 - #42 (
+INFO  04:50:51,453 - #47 a
+INFO  04:50:51,453 - #43 )
+INFO  04:50:51,453 - Koriscenje identifikatora a na liniji 32
+INFO  04:50:51,454 - #44 ;
+INFO  04:50:51,454 - #39 }
+INFO  04:50:51,454 - #39 }
+INFO  04:50:51,454 - #39 }
+INFO  04:50:51,456 - Broj globalnih prostih promenjivih:0
+INFO  04:50:51,456 - Broj globalnih nizova:0
+INFO  04:50:51,456 - Broj globalnih konstanti:0
+INFO  04:50:51,456 - Broj unutrasnjih klasa:0
+INFO  04:50:51,456 - Broj iskaza u main-u:14
+INFO  04:50:51,456 - Broj poziva metoda u main-u:1
+INFO  04:50:51,456 - Broj blokova naredbi:3
+INFO  04:50:51,457 - Broj funkcija glavnog programa:2
+INFO  04:50:51,457 - Broj funkcija unutrasnjih klasa:0
+INFO  04:50:51,457 - Broj naredbi kreiranja instanci unutrasnjih klasa:0
+INFO  04:50:51,457 - Broj pristupa clanovima natklase preko kljucne reci super:0
+INFO  04:50:51,457 - Print calls = 0
+INFO  04:50:51,459 - Generating bytecode file: /home/petart/workspace/MJCompiler/test/program.obj
+INFO  04:50:51,460 - Parsiranje uspesno zavrseno!

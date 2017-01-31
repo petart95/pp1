@@ -1,0 +1,35 @@
+program P
+
+class A
+{
+	{
+		char slovov() {
+			return 'o';
+		}
+	}
+}
+
+class B extends A
+{
+	{
+		char slovov() {
+			return 'k';
+		}
+	}
+}
+
+Table val;
+
+{
+	void main()
+	A x;
+	B y;
+	A z;
+	{
+		z = new B;
+		
+		//print(x.slovo());
+		//print(y.slovo());
+		print(z.slovo());
+	}
+}
